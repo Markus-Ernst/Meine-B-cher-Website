@@ -84,3 +84,12 @@
     </script>
 </body>
 </html>
+// JavaScript hinzufügen, um die Hauptseite auszublenden
+document.body.style.display = "none";
+document.getElementById("submitButton").addEventListener("click", () => {
+    document.body.style.display = "block"; // Zeige die Hauptseite nach Bestätigung
+    document.querySelector(".container").style.display = "none"; // Verstecke die Vorschaltseite
+});
+button.addEventListener('click', () => {
+    window.location.href = "https://deineseite.de"; // Ersetze mit deiner Haupt-URL
+});
