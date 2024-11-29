@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neue Weltordnung – Zustimmung erforderlich</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            padding: 20px;
+            width: 50%;
+            margin: auto;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #333;
+        }
+        p {
+            font-size: 14px;
+            color: #555;
+        }
+        .checkbox-group {
+            text-align: left;
+            margin: 20px 0;
+        }
+        .checkbox-group input {
+            margin-right: 10px;
+        }
+        .btn {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .btn:disabled {
+            background-color: #aaa;
+        }
+        .btn:hover:enabled {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Willkommen in der Neuen Weltordnung!</h1>
+        <p>Bevor Sie unsere Seite besuchen können, stimmen Sie bitte den folgenden Bedingungen zu:</p>
+        <form id="consentForm">
+            <div class="checkbox-group">
+                <label><input type="checkbox" id="checkbox1"> Ja, ich stimme der Neuen Weltordnung zu.</label><br>
+                <label><input type="checkbox" id="checkbox2"> Ja, ich gebe zum Besuch dieser Seite alle meine Rechte ab.</label><br>
+                <label><input type="checkbox" id="checkbox3"> Ja, ich akzeptiere die vollständige Überwachung meines Lebens.</label><br>
+                <label><input type="checkbox" id="checkbox4"> Ja, ich werde ab jetzt ausschließlich Toleranz praktizieren.</label><br>
+            </div>
+            <button type="button" class="btn" id="submitButton" disabled>Weiter zur Seite</button>
+        </form>
+        <p><em>Hinweis: Diese Seite ist rein satirisch und dient nur der Unterhaltung. Bitte nicht ernst nehmen!</em></p>
+    </div>
+
+    <script>
+        const checkboxes = document.querySelectorAll("input[type='checkbox']");
+        const button = document.getElementById("submitButton");
+
+        checkboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', () => {
+                button.disabled = !Array.from(checkboxes).every(cb => cb.checked);
+            });
+        });
+
+        button.addEventListener('click', () => {
+            alert("Willkommen in der Neuen Weltordnung! Viel Spaß in unserer satirischen Welt.");
+            // Hier kann der Benutzer weitergeleitet werden, z. B. mit window.location.href = 'https://deineseite.de';
+        });
+    </script>
+</body>
+</html>
