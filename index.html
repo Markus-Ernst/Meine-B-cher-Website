@@ -19,7 +19,21 @@
         #spenden { background-color: #f4f4f4; padding: 20px; border-radius: 5px; }
     </style>
 </head>
-<body>
+<body><div id="overlay">
+    <div class="overlay-content">
+        <h1>Willkommen auf meiner Seite!</h1>
+        <p>Bevor Sie fortfahren, stimmen Sie bitte den folgenden Bedingungen zu:</p>
+        <form id="consentForm">
+            <div class="checkbox-group">
+                <label><input type="checkbox" id="checkbox1"> Ja, ich stimme den AGBs zu.</label><br>
+                <label><input type="checkbox" id="checkbox2"> Ja, ich akzeptiere alle Regeln.</label><br>
+                <label><input type="checkbox" id="checkbox3"> Ja, ich gebe meine Zustimmung zur Weiterleitung.</label><br>
+            </div>
+            <button type="button" class="btn" id="submitButton" disabled>Bestätigen</button>
+        </form>
+    </div>
+</div>
+
     <!-- Header -->
     <header>
         <h1>Meine Bücher</h1>
