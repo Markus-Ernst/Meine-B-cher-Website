@@ -55,6 +55,30 @@
     </style>
 </head>
 <body>
+    <script>
+    const checkboxes = document.querySelectorAll("#overlay1 input[type='checkbox']");
+    const submitButton = document.getElementById("submitButton");
+    const overlay1 = document.getElementById("overlay1");
+    const overlay2 = document.getElementById("overlay2");
+    const mainContent = document.getElementById("main-content");
+
+    checkboxes.forEach(checkbox => {
+        checkbox.addEventListener("change", () => {
+            submitButton.disabled = !Array.from(checkboxes).every(cb => cb.checked);
+        });
+    });
+
+    submitButton.addEventListener("click", () => {
+        overlay1.style.display = "none"; // Erste Vorschaltseite ausblenden
+        overlay2.style.display = "flex"; // Zweite Vorschaltseite einblenden
+
+        setTimeout(() => {
+            overlay2.style.display = "none"; // Zweite Vorschaltseite ausblenden
+            mainContent.style.display = "block"; // Hauptinhalt anzeigen
+        }, 3000);
+    });
+</script>
+
     <!-- Vorschaltseite -->
     <div id="overlay">
         <div class="overlay-content">
