@@ -64,6 +64,11 @@
         .btn:hover:enabled {
             background-color: #218838;
         }
+
+        /* Hauptinhalt standardmäßig verstecken */
+        #main-content {
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -83,78 +88,44 @@
         </div>
     </div>
 
-    <!-- Header -->
-    <header>
-        <h1>Meine Bücher</h1>
-        <p>Willkommen auf meiner persönlichen Buch-Website. Entdecken Sie inspirierende Geschichten und tiefgehende Erkenntnisse.</p>
-    </header>
+    <!-- Hauptinhalt -->
+    <div id="main-content">
+        <header>
+            <h1>Meine Bücher</h1>
+            <p>Willkommen auf meiner persönlichen Buch-Website. Entdecken Sie inspirierende Geschichten und tiefgehende Erkenntnisse.</p>
+        </header>
 
-    <!-- Buch-Sektion -->
-    <section>
-        <div class="buch">
-            <a href="https://ibb.co/jJqs568">
-                <img src="https://i.ibb.co/41C3fmF/Spirituelle-Symbole-die-Auserw-hlten-Gottes-und-Engel-und-engelszahlen-20241129-063943-0000.jpg" 
-                     alt="Die Auserwählten Gottes Cover">
-            </a>
-            <div>
+        <section>
+            <div class="buch">
                 <h2>Buch 1: Die Auserwählten Gottes</h2>
-                <p><strong>Beschreibung:</strong> Ein inspirierendes Buch über innere Stärke und Transformation.</p>
+                <p>Ein inspirierendes Buch über innere Stärke und Transformation.</p>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Impressum -->
-    <section id="impressum" style="margin-top: 40px;">
-        <h2>Impressum</h2>
-        <p><strong>Angaben gemäß § 5 TMG:</strong></p>
-        <p>
-            Markus Ernst<br>
-            Willy-Brandt-Str. 11<br>
-            64354 Reinheim<br>
-            Deutschland<br>
-        </p>
-        <p>
-            <strong>Kontakt:</strong><br>
-            Telefon: 0179 4465022<br>
-            E-Mail: <a href="mailto:markus.reinheim@googlemail.com">markus.reinheim@googlemail.com</a>
-        </p>
-        <p><strong>Urheberrecht:</strong> Die Inhalte dieser Website sind urheberrechtlich geschützt. Jede Vervielfältigung oder Verbreitung ohne ausdrückliche Zustimmung ist untersagt.</p>
-    </section>
-
-    <!-- Datenschutzerklärung -->
-    <section id="datenschutz" style="margin-top: 40px;">
-        <h2>Datenschutzerklärung</h2>
-        <p>
-            Beim Besuch dieser Website werden keine personenbezogenen Daten ohne Ihre ausdrückliche Zustimmung gespeichert. Die Nutzung von Google Analytics, Cookies oder anderen Tracking-Methoden findet nicht statt.
-        </p>
-        <p><strong>Ihre Rechte:</strong></p>
-        <ul>
-            <li>Recht auf Auskunft über gespeicherte Daten</li>
-            <li>Recht auf Berichtigung unrichtiger Daten</li>
-            <li>Recht auf Löschung personenbezogener Daten</li>
-        </ul>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2024 Markus Ernst. Alle Rechte vorbehalten.</p>
-    </footer>
+        <footer>
+            <p>&copy; 2024 Markus Ernst. Alle Rechte vorbehalten.</p>
+        </footer>
+    </div>
 
     <!-- JavaScript -->
     <script>
         const checkboxes = document.querySelectorAll("#overlay input[type='checkbox']");
         const submitButton = document.getElementById("submitButton");
+        const overlay = document.getElementById("overlay");
+        const mainContent = document.getElementById("main-content");
 
+        // Alle Checkboxen müssen aktiviert sein, um den Button freizugeben
         checkboxes.forEach(checkbox => {
             checkbox.addEventListener("change", () => {
                 submitButton.disabled = !Array.from(checkboxes).every(cb => cb.checked);
             });
         });
 
+        // Vorschaltseite ausblenden und Hauptinhalt anzeigen
         submitButton.addEventListener("click", () => {
-            document.getElementById("overlay").style.display = "none";
+            overlay.style.display = "none"; // Vorschaltseite ausblenden
+            mainContent.style.display = "block"; // Hauptinhalt anzeigen
         });
     </script>
 </body>
 </html>
-
