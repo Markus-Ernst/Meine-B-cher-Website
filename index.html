@@ -5,77 +5,112 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meine Bücher</title>
     <style>
-        body { font-family: Arial, sans-serif; line-height: 1.6; padding: 20px; }
-        header { text-align: center; margin-bottom: 30px; }
-        footer { text-align: center; margin-top: 50px; font-size: 0.9em; color: #555; }
-        .buch { margin: 20px 0; }
+        body { font-family: Arial, sans-serif; line-height: 1.6; padding: 20px; margin: 0; }
+        header, footer { text-align: center; padding: 20px; background: #f4f4f4; }
+        footer { font-size: 0.9em; color: #555; }
+        .buch { margin: 20px 0; padding: 20px; border: 1px solid #ddd; border-radius: 5px; background-color: #f9f9f9; }
+        h2, h3 { margin-top: 0; }
         a { color: #007BFF; text-decoration: none; }
         a:hover { text-decoration: underline; }
+        ul { padding-left: 20px; }
     </style>
 </head>
 <body>
+    <!-- Header -->
     <header>
         <h1>Meine Bücher</h1>
-        <p>Willkommen auf meiner persönlichen Buch-Website.</p>
+        <p>Willkommen auf meiner persönlichen Buch-Website. Entdecken Sie inspirierende Geschichten und tiefgehende Erkenntnisse.</p>
     </header>
+
+    <!-- Buch-Sektion -->
     <section>
+        <!-- Buch 1 -->
         <div class="buch">
-            <h2>Buch 1</h2>
-            <p><strong>Titel:</strong> Die Auserwählten Gottes</p>
+            <h2>Buch 1: Die Auserwählten Gottes</h2>
             <p><strong>Beschreibung:</strong> 
-                Die Reise eines unerschütterlichen Geistes … (volle Beschreibung hier einfügen)
+                Dieses Buch erzählt die Reise eines unerschütterlichen Geistes – roh, ehrlich und inspirierend. Es handelt von triumphierenden Stärken, die aus tiefster Dunkelheit geboren wurden. 
+                Dieses Werk ist nicht nur eine Geschichte, sondern eine Einladung, die eigene Stärke zu entdecken und mit Mut in das eigene Licht zu treten. Eine spirituelle Reise, die von Widerstandskraft und göttlicher Gerechtigkeit erzählt.
             </p>
-            <p><a href="https://drive.google.com/uc?id=18cX8fyiwfucot9cXTL-74tVoKhS-B2Zd&export=download" target="_blank">Download Buch 1</a></p>
+            <!-- Download-Links -->
+            <p><a href="Buch_I.pdf" download>Download Buch 1 (Lokal)</a></p>
+            <p><a href="https://drive.google.com/uc?id=18cX8fyiwfucot9cXTL-74tVoKhS-B2Zd&export=download" target="_blank">Download Buch 1 (Google Drive)</a></p>
         </div>
+
+        <!-- Buch 2 -->
         <div class="buch">
-            <h2>Buch 2</h2>
-            <p><strong>Titel:</strong> Das verborgene Wissen des Universums</p>
+            <h2>Buch 2: Das verborgene Wissen des Universums</h2>
             <p><strong>Beschreibung:</strong> 
-                Dieses Buch ist eine spirituelle und mystische Reise … (volle Beschreibung hier einfügen)
+                Tauchen Sie ein in die Mysterien des Universums. Dieses Buch vereint uralte Weisheiten, spirituelle Einsichten und moderne Theorien, um Ihnen ein tieferes Verständnis unserer Existenz zu bieten.
+                Es beleuchtet die Verbindung zwischen Mensch, Geist und Kosmos und bietet Denkanstöße für eine spirituelle Weiterentwicklung.
             </p>
-            <p><a href="https://drive.google.com/uc?id=1EL1rWSntQdNL4cRgVeW7ToZHcEtdIiYZ&export=download" target="_blank">Download Buch 2</a></p>
+            <!-- Download-Links -->
+            <p><a href="Buch_II.pdf" download>Download Buch 2 (Lokal)</a></p>
+            <p><a href="https://drive.google.com/uc?id=1EL1rWSntQdNL4cRgVeW7ToZHcEtdIiYZ&export=download" target="_blank">Download Buch 2 (Google Drive)</a></p>
         </div>
     </section>
-    <footer>
-        <p>&copy; 2024 Markus Ernst</p>
-    </footer>
 
-    <section id="impressum">
+    <!-- Impressum -->
+    <section id="impressum" style="margin-top: 40px;">
         <h2>Impressum</h2>
-        <p><strong>Verantwortlich für den Inhalt nach § 5 TMG:</strong></p>
+        <p><strong>Angaben gemäß § 5 TMG:</strong></p>
         <p>
             Markus Ernst<br>
             Willy-Brandt-Str. 11<br>
             64354 Reinheim<br>
             Deutschland<br>
+        </p>
+        <p>
+            <strong>Kontakt:</strong><br>
             Telefon: 0179 4465022<br>
             E-Mail: <a href="mailto:markus.reinheim@googlemail.com">markus.reinheim@googlemail.com</a>
         </p>
-    </section>
-
-    <section id="datenschutz">
-        <h2>Datenschutzerklärung</h2>
+        <p><strong>Haftungsausschluss:</strong></p>
         <p>
-            Der Schutz Ihrer persönlichen Daten ist uns ein besonderes Anliegen. Wir verarbeiten Ihre Daten daher ausschließlich auf Grundlage der gesetzlichen Bestimmungen (DSGVO, TMG). 
+            Trotz sorgfältiger Kontrolle übernehmen wir keine Haftung für die Inhalte externer Links. Für den Inhalt der verlinkten Seiten sind ausschließlich deren Betreiber verantwortlich.
         </p>
     </section>
 
-    <section id="spenden" style="margin-top: 30px; padding: 20px; background-color: #f9f9f9; border: 1px solid #ddd; border-radius: 5px;">
+    <!-- Datenschutzerklärung -->
+    <section id="datenschutz" style="margin-top: 40px;">
+        <h2>Datenschutzerklärung</h2>
+        <p><strong>Verantwortlich für die Datenverarbeitung:</strong></p>
+        <p>
+            Markus Ernst<br>
+            Willy-Brandt-Str. 11<br>
+            64354 Reinheim<br>
+            E-Mail: <a href="mailto:markus.reinheim@googlemail.com">markus.reinheim@googlemail.com</a>
+        </p>
+        <p><strong>Welche Daten wir erheben:</strong></p>
+        <p>
+            Beim Besuch dieser Website werden keine personenbezogenen Daten ohne Ihre Zustimmung erhoben. Eventuell gespeicherte technische Daten (z. B. IP-Adresse) werden ausschließlich zur Sicherstellung des Betriebs verwendet.
+        </p>
+        <p><strong>Rechte des Nutzers:</strong></p>
+        <ul>
+            <li>Auskunft über gespeicherte Daten</li>
+            <li>Berichtigung unrichtiger Daten</li>
+            <li>Löschung von Daten</li>
+        </ul>
+        <p>
+            Bei Fragen oder Anliegen kontaktieren Sie uns bitte per E-Mail.
+        </p>
+    </section>
+
+    <!-- Spendenaufruf -->
+    <section id="spenden" style="margin-top: 40px; padding: 20px; background-color: #f4f4f4; border-radius: 5px;">
         <h2>Unterstützen Sie meine Arbeit</h2>
         <p>
-            Meine Bücher stelle ich Ihnen kostenlos zur Verfügung, damit jeder Zugriff auf wertvolles Wissen hat. Wenn Ihnen meine Arbeit gefällt und Sie mich unterstützen möchten, freue ich mich über Ihre Hilfe.
+            Meine Bücher stehen Ihnen kostenlos zur Verfügung, damit jeder darauf zugreifen kann. Wenn Sie meine Arbeit unterstützen möchten, freue ich mich über Ihre Spende. Jeder Beitrag hilft mir, weitere Inhalte zu erstellen und diese Plattform zu betreiben.
         </p>
         <ul>
             <li><strong>PayPal:</strong> <a href="https://www.paypal.me/markusreinheim" target="_blank">markus.reinheim@googlemail.com</a></li>
             <li><strong>Banküberweisung:</strong> IBAN: DE41508526510075054866 (Sparkasse Dieburg)</li>
         </ul>
+        <p>Vielen Dank für Ihre Unterstützung!</p>
     </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Markus Ernst. Alle Rechte vorbehalten.</p>
+    </footer>
 </body>
 </html>
-<p><a href="https://drive.google.com/uc?id=18cX8fyiwfucot9cXTL-74tVoKhS-B2Zd&export=download" target="_blank">Download Buch 1</a></p>
-index.html
-Buch_I.pdf
-Buch_II.pdf
-<p><a href="Buch_I.pdf" download>Download Buch 1</a></p>
-<p><a href="Buch_II.pdf" download>Download Buch 2</a></p>
-
