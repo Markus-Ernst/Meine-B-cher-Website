@@ -5,95 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vorschaltseiten und Hauptseite</title>
     <style>
-        /* Allgemeines Styling */
         body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
-
-        /* Vorschaltseiten */
+        header, footer { text-align: center; padding: 20px; background: #f4f4f4; }
         #overlay1, #overlay2 {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
-            color: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(0, 0, 0, 0.8); color: white;
+            display: flex; justify-content: center; align-items: center; z-index: 1000;
         }
-
         .overlay-content {
-            background: #fff;
-            color: #000;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
-            text-align: center;
-            width: 80%;
-            max-width: 600px;
+            background: #fff; color: #000; padding: 20px; border-radius: 10px;
+            text-align: center; width: 80%; max-width: 600px; box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
         }
-
-        .checkbox-group {
-            text-align: left;
-            margin: 20px 0;
-        }
-
-        .checkbox-group input {
-            margin-right: 10px;
-        }
-
+        .checkbox-group { text-align: left; margin: 20px 0; }
+        .checkbox-group input { margin-right: 10px; }
         .btn {
-            background-color: #28a745;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
+            background-color: #28a745; color: white; padding: 10px 20px; border: none;
+            border-radius: 5px; cursor: pointer; font-size: 16px;
         }
-
-        .btn:disabled {
-            background-color: #aaa;
-            cursor: not-allowed;
-        }
-
-        .btn:hover:enabled {
-            background-color: #218838;
-        }
-
-        /* Zweite Vorschaltseite */
-        #overlay2 .loading {
-            font-size: 1.5em;
-            animation: rotate 1s linear infinite;
-        }
-
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        /* Hauptinhalt */
-        #main-content {
-            display: none;
-            padding: 20px;
-        }
-
-        .buch {
-            margin: 30px 0;
-            padding: 20px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            background-color: #f9f9f9;
-            display: flex;
-            gap: 20px;
-            align-items: flex-start;
-        }
-
+        .btn:disabled { background-color: #aaa; cursor: not-allowed; }
+        .btn:hover:enabled { background-color: #218838; }
+        #overlay2 .loading { font-size: 1.5em; animation: rotate 1s linear infinite; }
+        @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        .buch { margin: 30px 0; padding: 20px; border: 1px solid #ddd; border-radius: 5px; background: #f9f9f9; display: flex; gap: 20px; align-items: flex-start; }
         .buch img { width: 150px; height: auto; border-radius: 5px; }
         h2, h3 { margin-top: 0; }
         a { color: #007BFF; text-decoration: none; }
         a:hover { text-decoration: underline; }
+        ul { padding-left: 20px; }
     </style>
 </head>
 <body>
@@ -101,14 +39,14 @@
     <div id="overlay1">
         <div class="overlay-content">
             <h1>Willkommen auf meiner Seite!</h1>
-            <p>Bevor Sie fortfahren, stimmen Sie bitte den folgenden Bedingungen zu:</p>
-            <form id="consentForm">
+            <p>Bitte stimmen Sie den folgenden Bedingungen zu, bevor Sie fortfahren:</p>
+            <form>
                 <div class="checkbox-group">
                     <label><input type="checkbox" id="checkbox1"> Ich stimme den AGBs zu.</label><br>
                     <label><input type="checkbox" id="checkbox2"> Ich akzeptiere die Regeln.</label><br>
-                    <label><input type="checkbox" id="checkbox3"> Ich gebe meine Zustimmung zum Fortfahren.</label><br>
+                    <label><input type="checkbox" id="checkbox3"> Ich gebe meine Zustimmung zum Fortfahren.</label>
                 </div>
-                <button type="button" class="btn" id="submitButton" disabled>Bestätigen</button>
+                <button type="button" class="btn" id="submitButton" disabled>Weiter</button>
             </form>
         </div>
     </div>
@@ -117,18 +55,17 @@
     <div id="overlay2" style="display: none;">
         <div class="overlay-content">
             <h1>🚨 Achtung! 🚨</h1>
-            <p>SIE WERDEN AUF PORN HUB WEITERGELEITET...</p>
+            <p>Sie werden weitergeleitet...</p>
             <div class="loading">⏳</div>
         </div>
     </div>
 
     <!-- Hauptinhalt -->
-    <div id="main-content">
+    <div id="main-content" style="display: none;">
         <header>
             <h1>Meine Bücher</h1>
-            <p>Willkommen auf meiner persönlichen Buch-Website. Entdecken Sie inspirierende Geschichten und tiefgehende Erkenntnisse.</p>
+            <p>Entdecken Sie inspirierende Geschichten und tiefgehende Erkenntnisse.</p>
         </header>
-        
         <!-- Buch-Sektion -->
         <section>
             <div class="buch">
@@ -172,100 +109,17 @@
                 Telefon: 0179 4465022<br>
                 E-Mail: <a href="mailto:markus.reinheim@googlemail.com">markus.reinheim@googlemail.com</a>
             </p>
+            <p><strong>Haftungsausschluss:</strong> Trotz sorgfältiger Kontrolle übernehmen wir keine Haftung für die Inhalte externer Links. Für den Inhalt der verlinkten Seiten sind ausschließlich deren Betreiber verantwortlich.</p>
         </section>
-    </div>
 
-    <script>
-        // Auswahl der Elemente
-        const checkboxes = document.querySelectorAll("#overlay1 input[type='checkbox']");
-        const submitButton = document.getElementById("submitButton");
-        const overlay1 = document.getElementById("overlay1");
-        const overlay2 = document.getElementById("overlay2");
-        const mainContent = document.getElementById("main-content");
-
-        // Aktivieren des Buttons, wenn alle Checkboxen markiert sind
-        checkboxes.forEach(checkbox => {
-            checkbox.addEventListener("change", () => {
-                const allChecked = Array.from(checkboxes).every(cb => cb.checked);
-                submitButton.disabled = !allChecked;
-            });
-        });
-
-        // Button-Klick: Erste Vorschaltseite ausblenden, zweite Vorschaltseite anzeigen
-        submitButton.addEventListener("click", () => {
-            overlay1.style.display = "none"; // Erste Vorschaltseite ausblenden
-            overlay2.style.display = "flex"; // Zweite Vorschaltseite einblenden
-
-            // Nach 3 Sekunden die Hauptseite anzeigen
-            setTimeout(() => {
-                overlay2.style.display = "none"; // Zweite Vorschaltseite ausblenden
-                mainContent.style.display = "block"; // Hauptinhalt anzeigen
-            }, 3000);
-        });
-    </script>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="de">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zwei Vorschaltseiten & Bücher</title>
-    <style>
-        /* Styling */
-        body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
-        header, footer { text-align: center; padding: 20px; background: #f4f4f4; }
-        .buch { margin: 30px 0; padding: 20px; border: 1px solid #ddd; border-radius: 5px; background: #f9f9f9; display: flex; gap: 20px; }
-        .buch img { width: 150px; border-radius: 5px; }
-        .btn { background: #28a745; color: #fff; padding: 10px; border: none; cursor: pointer; }
-        .btn:disabled { background: #aaa; cursor: not-allowed; }
-        #overlay1, #overlay2 { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.8); color: #fff; z-index: 1000; display: flex; align-items: center; justify-content: center; }
-        .overlay-content { background: #fff; padding: 20px; border-radius: 5px; }
-        #overlay2 .loading { animation: rotate 1s linear infinite; }
-        @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-    </style>
-</head>
-<body>
-    <!-- Vorschaltseite 1 -->
-    <div id="overlay1">
-        <div class="overlay-content">
-            <h1>Willkommen!</h1>
-            <p>Bitte stimmen Sie den Bedingungen zu, um fortzufahren:</p>
-            <form>
-                <label><input type="checkbox" id="checkbox1"> AGBs</label><br>
-                <label><input type="checkbox" id="checkbox2"> Regeln</label><br>
-                <label><input type="checkbox" id="checkbox3"> Zustimmung</label><br>
-                <button type="button" class="btn" id="submitButton" disabled>Weiter</button>
-            </form>
-        </div>
-    </div>
-
-    <!-- Vorschaltseite 2 -->
-    <div id="overlay2" style="display: none;">
-        <div class="overlay-content">
-            <h1>🚨 Achtung! 🚨</h1>
-            <p>Bitte warten...</p>
-            <div class="loading">⏳</div>
-        </div>
-    </div>
-
-    <!-- Hauptinhalt -->
-    <div id="main-content" style="display: none;">
-        <header>
-            <h1>Meine Bücher</h1>
-        </header>
-        <!-- Buchdetails etc. wie zuvor -->
-        <section>
-            <div class="buch">
-                <a href="https://ibb.co/jJqs568">
-                    <img src="https://i.ibb.co/41C3fmF/Spirituelle-Symbole.jpg" alt="Buch 1">
-                </a>
-                <div>
-                    <h2>Buch 1</h2>
-                    <p>Beschreibung...</p>
-                </div>
-            </div>
-            <!-- Weitere Bücher -->
+        <!-- Spendenaufruf -->
+        <section id="spenden" style="margin-top: 40px; padding: 20px; background-color: #f4f4f4; border-radius: 5px;">
+            <h2>Unterstützen Sie meine Arbeit</h2>
+            <p>Meine Bücher stehen Ihnen kostenlos zur Verfügung. Unterstützen Sie meine Arbeit mit einer Spende:</p>
+            <ul>
+                <li><strong>PayPal:</strong> <a href="https://www.paypal.me/markusreinheim" target="_blank">markus.reinheim@googlemail.com</a></li>
+                <li><strong>Banküberweisung:</strong> IBAN: DE41508526510075054866 (Sparkasse Dieburg)</li>
+            </ul>
         </section>
     </div>
 
@@ -277,7 +131,7 @@
         const mainContent = document.getElementById("main-content");
 
         checkboxes.forEach(cb => cb.addEventListener("change", () => {
-            submitButton.disabled = ![...checkboxes].every(checkbox => checkbox.checked);
+            submitButton.disabled = ![...checkboxes].every(cb => cb.checked);
         }));
 
         submitButton.addEventListener("click", () => {
@@ -291,103 +145,3 @@
     </script>
 </body>
 </html>
-<!DOCTYPE html>
-<html lang="de">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zwei Vorschaltseiten & Bücher</title>
-    <style>
-        body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
-        #overlay1, #overlay2 { 
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
-            background-color: rgba(0, 0, 0, 0.8); color: white; 
-            display: flex; justify-content: center; align-items: center; 
-            z-index: 1000; 
-        }
-        .overlay-content { 
-            background: #fff; color: #000; padding: 20px; border-radius: 10px; 
-            text-align: center; width: 80%; max-width: 500px; 
-        }
-        .checkbox-group { text-align: left; margin: 20px 0; }
-        .checkbox-group input { margin-right: 10px; }
-        .btn { 
-            background-color: #28a745; color: white; padding: 10px 20px; 
-            border: none; border-radius: 5px; cursor: pointer; 
-            font-size: 16px; 
-        }
-        .btn:disabled { background-color: #aaa; cursor: not-allowed; }
-        .btn:hover:enabled { background-color: #218838; }
-        #overlay2 .loading { animation: rotate 1s linear infinite; font-size: 2em; }
-        @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-    </style>
-</head>
-<body>
-    <!-- Erste Vorschaltseite -->
-    <div id="overlay1">
-        <div class="overlay-content">
-            <h1>Willkommen auf meiner Seite!</h1>
-            <p>Bitte stimmen Sie den Bedingungen zu, um fortzufahren:</p>
-            <div class="checkbox-group">
-                <label><input type="checkbox" id="checkbox1"> Ich stimme den AGBs zu.</label><br>
-                <label><input type="checkbox" id="checkbox2"> Ich akzeptiere die Regeln.</label><br>
-                <label><input type="checkbox" id="checkbox3"> Ich gebe meine Zustimmung zum Fortfahren.</label><br>
-            </div>
-            <button type="button" class="btn" id="submitButton" disabled>Weiter</button>
-        </div>
-    </div>
-
-    <!-- Zweite Vorschaltseite -->
-    <div id="overlay2" style="display: none;">
-        <div class="overlay-content">
-            <h1>🚨 Achtung! 🚨</h1>
-            <p>Sie werden weitergeleitet...</p>
-            <div class="loading">⏳</div>
-        </div>
-    </div>
-
-    <!-- Hauptinhalt -->
-    <div id="main-content" style="display: none;">
-        <header>
-            <h1>Meine Bücher</h1>
-            <p>Entdecken Sie inspirierende Geschichten und tiefgehende Erkenntnisse.</p>
-        </header>
-        <section>
-            <div>
-                <h2>Buch 1: Die Auserwählten Gottes</h2>
-                <p>Dieses Buch erzählt die Geschichte von Mut und Inspiration...</p>
-            </div>
-        </section>
-    </div>
-
-    <script>
-        // Elemente auswählen
-        const checkboxes = document.querySelectorAll("#overlay1 input[type='checkbox']");
-        const submitButton = document.getElementById("submitButton");
-        const overlay1 = document.getElementById("overlay1");
-        const overlay2 = document.getElementById("overlay2");
-        const mainContent = document.getElementById("main-content");
-
-        // Aktivieren des Buttons, wenn alle Checkboxen markiert sind
-        checkboxes.forEach(checkbox => {
-            checkbox.addEventListener("change", () => {
-                const allChecked = [...checkboxes].every(cb => cb.checked);
-                submitButton.disabled = !allChecked; // Button aktivieren/deaktivieren
-            });
-        });
-
-        // Button-Klick: Vorschaltseite 1 ausblenden, Vorschaltseite 2 anzeigen
-        submitButton.addEventListener("click", () => {
-            overlay1.style.display = "none"; // Erste Vorschaltseite ausblenden
-            overlay2.style.display = "flex"; // Zweite Vorschaltseite einblenden
-
-            // Nach 3 Sekunden die Hauptseite anzeigen
-            setTimeout(() => {
-                overlay2.style.display = "none"; // Zweite Vorschaltseite ausblenden
-                mainContent.style.display = "block"; // Hauptinhalt anzeigen
-            }, 3000);
-        });
-    </script>
-</body>
-</html>
-
