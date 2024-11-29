@@ -17,22 +17,71 @@
         .videos { margin: 40px 0; }
         .videos iframe { width: 100%; max-width: 560px; height: 315px; margin: 20px auto; display: block; }
         #spenden { background-color: #f4f4f4; padding: 20px; border-radius: 5px; }
+
+        /* Vorschaltseite */
+        #overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .overlay-content {
+            background: #fff;
+            color: #000;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            width: 80%;
+            max-width: 600px;
+        }
+        .checkbox-group {
+            text-align: left;
+            margin: 20px 0;
+        }
+        .checkbox-group input {
+            margin-right: 10px;
+        }
+        .btn {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .btn:disabled {
+            background-color: #aaa;
+        }
+        .btn:hover:enabled {
+            background-color: #218838;
+        }
     </style>
 </head>
-<body><div id="overlay">
-    <div class="overlay-content">
-        <h1>Willkommen auf meiner Seite!</h1>
-        <p>Bevor Sie fortfahren, stimmen Sie bitte den folgenden Bedingungen zu:</p>
-        <form id="consentForm">
-            <div class="checkbox-group">
-                <label><input type="checkbox" id="checkbox1"> Ja, ich stimme den AGBs zu.</label><br>
-                <label><input type="checkbox" id="checkbox2"> Ja, ich akzeptiere alle Regeln.</label><br>
-                <label><input type="checkbox" id="checkbox3"> Ja, ich gebe meine Zustimmung zur Weiterleitung.</label><br>
-            </div>
-            <button type="button" class="btn" id="submitButton" disabled>Bestätigen</button>
-        </form>
+<body>
+    <!-- Vorschaltseite -->
+    <div id="overlay">
+        <div class="overlay-content">
+            <h1>Willkommen auf meiner Seite!</h1>
+            <p>Bevor Sie fortfahren, stimmen Sie bitte den folgenden Bedingungen zu:</p>
+            <form id="consentForm">
+                <div class="checkbox-group">
+                    <label><input type="checkbox" id="checkbox1"> Ja, ich stimme den AGBs zu.</label><br>
+                    <label><input type="checkbox" id="checkbox2"> Ja, ich akzeptiere alle Regeln.</label><br>
+                    <label><input type="checkbox" id="checkbox3"> Ja, ich gebe meine Zustimmung zur Weiterleitung.</label><br>
+                </div>
+                <button type="button" class="btn" id="submitButton" disabled>Bestätigen</button>
+            </form>
+        </div>
     </div>
-</div>
 
     <!-- Header -->
     <header>
@@ -42,7 +91,6 @@
 
     <!-- Buch-Sektion -->
     <section>
-        <!-- Buch 1 -->
         <div class="buch">
             <a href="https://ibb.co/jJqs568">
                 <img src="https://i.ibb.co/41C3fmF/Spirituelle-Symbole-die-Auserw-hlten-Gottes-und-Engel-und-engelszahlen-20241129-063943-0000.jpg" 
@@ -50,64 +98,9 @@
             </a>
             <div>
                 <h2>Buch 1: Die Auserwählten Gottes</h2>
-                <p><strong>Beschreibung:</strong></p>
-                <p>
-                    Dieses Buch erzählt die kraftvolle und inspirierende Reise eines unerschütterlichen Geistes. Es ist die Geschichte eines Lebens voller Herausforderungen und tiefster Dunkelheit, die jedoch in Stärke, Mut und Licht verwandelt wurden.
-                </p>
-                <p>
-                    „Die Auserwählten Gottes“ zeigt, dass es möglich ist, jede Dunkelheit zu durchschreiten und dabei unbesiegbar zu werden. Es ist ein Werk für all jene, die an sich selbst glauben möchten, um ihre innere Stärke zu entdecken und in einer Welt voller Herausforderungen zu bestehen.
-                </p>
-                <p><a href="https://drive.google.com/uc?id=18cX8fyiwfucot9cXTL-74tVoKhS-B2Zd&export=download" target="_blank">Download Buch 1</a></p>
+                <p><strong>Beschreibung:</strong> Ein inspirierendes Buch über innere Stärke und Transformation.</p>
             </div>
         </div>
-
-        <!-- Buch 2 -->
-        <div class="buch">
-            <a href="https://ibb.co/YWYxgjF">
-                <img src="https://i.ibb.co/X4NqHJr/cover.jpg" 
-                     alt="Das verborgene Wissen des Universums Cover">
-            </a>
-            <div>
-                <h2>Buch 2: Das verborgene Wissen des Universums</h2>
-                <p><strong>Beschreibung:</strong></p>
-                <p>
-                    Tauchen Sie ein in die faszinierende Welt der Mystik, Wissenschaft und Spiritualität. Dieses Buch vereint die tiefsten Geheimnisse des Universums mit uralten Weisheiten und modernen Theorien.
-                </p>
-                <p>
-                    Von der Weisheit antiker Kulturen bis zu den neuesten Erkenntnissen über das Universum: „Das verborgene Wissen des Universums“ ist eine Reise durch Raum und Zeit. Lassen Sie sich inspirieren, Ihr eigenes inneres Wissen zu erwecken und die tieferen Verbindungen in der Welt zu entdecken.
-                </p>
-                <p><a href="https://drive.google.com/uc?id=1EL1rWSntQdNL4cRgVeW7ToZHcEtdIiYZ&export=download" target="_blank">Download Buch 2</a></p>
-            </div>
-        </div>
-
-        <!-- Buch 3 -->
-        <div class="buch">
-            <a href="https://ibb.co/8NpYcjM">
-                <img src="https://i.ibb.co/KbkKw96/DALL-E-2024-11-29-08-55-12-An-epic-vibrant-illustration-of-a-modern-day-Robin-Hood-character-standin.webp" 
-                     alt="Robin Hood und der verlorene Schlüssel Cover">
-            </a>
-            <div>
-                <h2>Buch 3: Robin Hood und der verlorene Schlüssel</h2>
-                <p><strong>Beschreibung:</strong></p>
-                <p>
-                    Dieses spannende Abenteuer führt Robin Hood und seine Gefährten auf eine gefährliche Reise, um einen längst verschollenen Schlüssel zu finden, der die Geheimnisse einer verborgenen Schatzkammer birgt. Eine Geschichte voller Mut, Freundschaft und Intrigen.
-                </p>
-                <p>
-                    „Robin Hood und der verlorene Schlüssel“ ist ein aufregendes Märchen für Jung und Alt, das Sie in die magische Welt der Legenden und Mythen entführt.
-                </p>
-                <p><a href="https://drive.google.com/uc?id=1TAznQvWu6T9tGWdWZWHGZTeGIphcwYJK&export=download" target="_blank">Download Buch 3</a></p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Inspirierende Videos -->
-    <section class="videos">
-        <h2>Inspirierende Videos</h2>
-        <p>Hier sind einige Videos, die Sie inspirieren und motivieren können:</p>
-        <iframe src="https://www.youtube.com/embed/7TSPb8ZJJ1U" title="Video 1" allowfullscreen></iframe>
-        <iframe src="https://www.youtube.com/embed/YJlQmGgPI9g" title="Video 2" allowfullscreen></iframe>
-        <iframe src="https://www.youtube.com/embed/SphRi3JjbPc" title="Video 3" allowfullscreen></iframe>
-        <iframe src="https://www.youtube.com/embed/xwdRjKNKlok" title="Video 4" allowfullscreen></iframe>
     </section>
 
     <!-- Impressum -->
@@ -125,20 +118,20 @@
             Telefon: 0179 4465022<br>
             E-Mail: <a href="mailto:markus.reinheim@googlemail.com">markus.reinheim@googlemail.com</a>
         </p>
+        <p><strong>Urheberrecht:</strong> Die Inhalte dieser Website sind urheberrechtlich geschützt. Jede Vervielfältigung oder Verbreitung ohne ausdrückliche Zustimmung ist untersagt.</p>
     </section>
 
     <!-- Datenschutzerklärung -->
     <section id="datenschutz" style="margin-top: 40px;">
         <h2>Datenschutzerklärung</h2>
-        <p>Ihre Daten sind sicher und werden nicht ohne Ihre Zustimmung gespeichert.</p>
-    </section>
-
-    <!-- Spenden -->
-    <section id="spenden" style="margin-top: 40px;">
-        <h2>Unterstützen Sie meine Arbeit</h2>
-        <p>Wenn Ihnen die Inhalte gefallen, können Sie meine Arbeit gerne durch eine Spende unterstützen.</p>
+        <p>
+            Beim Besuch dieser Website werden keine personenbezogenen Daten ohne Ihre ausdrückliche Zustimmung gespeichert. Die Nutzung von Google Analytics, Cookies oder anderen Tracking-Methoden findet nicht statt.
+        </p>
+        <p><strong>Ihre Rechte:</strong></p>
         <ul>
-            <li><strong>PayPal:</strong> <a href="https://www.paypal.me/markusreinheim" target="_blank">markus.reinheim@googlemail.com</a></li>
+            <li>Recht auf Auskunft über gespeicherte Daten</li>
+            <li>Recht auf Berichtigung unrichtiger Daten</li>
+            <li>Recht auf Löschung personenbezogener Daten</li>
         </ul>
     </section>
 
@@ -146,5 +139,22 @@
     <footer>
         <p>&copy; 2024 Markus Ernst. Alle Rechte vorbehalten.</p>
     </footer>
+
+    <!-- JavaScript -->
+    <script>
+        const checkboxes = document.querySelectorAll("#overlay input[type='checkbox']");
+        const submitButton = document.getElementById("submitButton");
+
+        checkboxes.forEach(checkbox => {
+            checkbox.addEventListener("change", () => {
+                submitButton.disabled = !Array.from(checkboxes).every(cb => cb.checked);
+            });
+        });
+
+        submitButton.addEventListener("click", () => {
+            document.getElementById("overlay").style.display = "none";
+        });
+    </script>
 </body>
 </html>
+
