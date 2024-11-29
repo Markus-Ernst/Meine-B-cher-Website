@@ -205,3 +205,89 @@
     </script>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zwei Vorschaltseiten & Bücher</title>
+    <style>
+        /* Styling */
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
+        header, footer { text-align: center; padding: 20px; background: #f4f4f4; }
+        .buch { margin: 30px 0; padding: 20px; border: 1px solid #ddd; border-radius: 5px; background: #f9f9f9; display: flex; gap: 20px; }
+        .buch img { width: 150px; border-radius: 5px; }
+        .btn { background: #28a745; color: #fff; padding: 10px; border: none; cursor: pointer; }
+        .btn:disabled { background: #aaa; cursor: not-allowed; }
+        #overlay1, #overlay2 { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.8); color: #fff; z-index: 1000; display: flex; align-items: center; justify-content: center; }
+        .overlay-content { background: #fff; padding: 20px; border-radius: 5px; }
+        #overlay2 .loading { animation: rotate 1s linear infinite; }
+        @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    </style>
+</head>
+<body>
+    <!-- Vorschaltseite 1 -->
+    <div id="overlay1">
+        <div class="overlay-content">
+            <h1>Willkommen!</h1>
+            <p>Bitte stimmen Sie den Bedingungen zu, um fortzufahren:</p>
+            <form>
+                <label><input type="checkbox" id="checkbox1"> AGBs</label><br>
+                <label><input type="checkbox" id="checkbox2"> Regeln</label><br>
+                <label><input type="checkbox" id="checkbox3"> Zustimmung</label><br>
+                <button type="button" class="btn" id="submitButton" disabled>Weiter</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Vorschaltseite 2 -->
+    <div id="overlay2" style="display: none;">
+        <div class="overlay-content">
+            <h1>🚨 Achtung! 🚨</h1>
+            <p>Bitte warten...</p>
+            <div class="loading">⏳</div>
+        </div>
+    </div>
+
+    <!-- Hauptinhalt -->
+    <div id="main-content" style="display: none;">
+        <header>
+            <h1>Meine Bücher</h1>
+        </header>
+        <!-- Buchdetails etc. wie zuvor -->
+        <section>
+            <div class="buch">
+                <a href="https://ibb.co/jJqs568">
+                    <img src="https://i.ibb.co/41C3fmF/Spirituelle-Symbole.jpg" alt="Buch 1">
+                </a>
+                <div>
+                    <h2>Buch 1</h2>
+                    <p>Beschreibung...</p>
+                </div>
+            </div>
+            <!-- Weitere Bücher -->
+        </section>
+    </div>
+
+    <script>
+        const checkboxes = document.querySelectorAll("#overlay1 input[type='checkbox']");
+        const submitButton = document.getElementById("submitButton");
+        const overlay1 = document.getElementById("overlay1");
+        const overlay2 = document.getElementById("overlay2");
+        const mainContent = document.getElementById("main-content");
+
+        checkboxes.forEach(cb => cb.addEventListener("change", () => {
+            submitButton.disabled = ![...checkboxes].every(checkbox => checkbox.checked);
+        }));
+
+        submitButton.addEventListener("click", () => {
+            overlay1.style.display = "none";
+            overlay2.style.display = "flex";
+            setTimeout(() => {
+                overlay2.style.display = "none";
+                mainContent.style.display = "block";
+            }, 3000);
+        });
+    </script>
+</body>
+</html>
