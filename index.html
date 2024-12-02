@@ -469,3 +469,97 @@ Genießen sie die neue freie Welt
   </div>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Diashow Hintergrund</title>
+  <style>
+    /* Grundlegendes Styling */
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    /* Diashow Container */
+    .slideshow-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1; /* Hintergrund hinter den Inhalten */
+    }
+
+    /* Alle Inhalte */
+    .slideshow-container div {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      animation: fade 20s infinite;
+    }
+
+    /* Diashow Animation */
+    @keyframes fade {
+      0%, 12.5% { opacity: 1; z-index: 1; }
+      25% { opacity: 0; z-index: 0; }
+      100% { opacity: 0; }
+    }
+
+    /* Reihenfolge der Elemente */
+    .slideshow-container div:nth-child(1) { animation-delay: 0s; background-image: url('bild1.png'); }
+    .slideshow-container div:nth-child(2) { animation-delay: 5s; background-image: url('hintergrund1.png'); }
+    .slideshow-container div:nth-child(3) { animation-delay: 10s; background-image: url('hintergrund2.png'); }
+    .slideshow-container div:nth-child(4) { animation-delay: 15s; background-image: url('hintergrund3.png'); }
+
+    /* Videos */
+    .slideshow-container video {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 1;
+      opacity: 0;
+      animation: fade 20s infinite;
+    }
+    video:nth-child(5) { animation-delay: 20s; }
+    video:nth-child(6) { animation-delay: 25s; }
+
+    /* Inhalte über dem Hintergrund */
+    .content {
+      position: relative;
+      z-index: 1;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Diashow Hintergrund -->
+  <div class="slideshow-container">
+    <div></div> <!-- Bild 1 -->
+    <div></div> <!-- Hintergrund 1 -->
+    <div></div> <!-- Hintergrund 2 -->
+    <div></div> <!-- Hintergrund 3 -->
+    <video autoplay muted loop>
+      <source src="bild_bewegt1.mp4" type="video/mp4">
+    </video>
+    <video autoplay muted loop>
+      <source src="diashow3.mp4" type="video/mp4">
+    </video>
+  </div>
+
+  <!-- Hauptinhalt -->
+  <div class="content">
+    <h1>Hauptseite</h1>
+    <p>Dies ist die Hauptseite mit einer Diashow im Hintergrund.</p>
+  </div>
+</body>
+</html>
