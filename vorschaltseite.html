@@ -167,3 +167,46 @@ corrected_index_content = """
     </script>
 </body>
 </html>
+document.addEventListener("DOMContentLoaded", () => {
+    const checkboxes = document.querySelectorAll(".question-input"); // Alle Checkboxen
+    const confirmButton = document.getElementById("confirm-button"); // Bestätigungsknopf
+
+    // Funktion: Überprüft, ob alle Checkboxen angeklickt sind
+    function updateButtonState() {
+        const allChecked = Array.from(checkboxes).every(checkbox => checkbox.checked);
+        confirmButton.disabled = !allChecked; // Aktivieren oder Deaktivieren
+        confirmButton.classList.toggle("active", allChecked); // Styling anpassen
+    }
+
+    // Event-Listener für jede Checkbox
+    checkboxes.forEach(checkbox => {
+        checkbox.addEventListener("change", updateButtonState);
+    });
+
+    // Weiterleitung bei Klick auf den Button
+    confirmButton.addEventListener("click", () => {
+        alert("Weiterleitung zur Hauptseite...");
+        window.location.href = "index.html"; // Zielseite (anpassen bei Bedarf)
+    });
+});
+<div id="popup">
+    <h2>Fragen</h2>
+    <p>Bitte beantworten Sie alle Fragen, um fortzufahren:</p>
+    <div class="question">
+        <label><input type="checkbox" class="question-input"> Ich akzeptiere die AGB.</label>
+    </div>
+    <div class="question">
+        <label><input type="checkbox" class="question-input"> Ich stimme der Datenschutzerklärung zu.</label>
+    </div>
+    <button id="confirm-button" disabled>Weiter</button>
+</div>
+button {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+button.active {
+    cursor: pointer;
+    opacity: 1;
+    background-color: #28a745;
+}
+<script src="script.js"></script>
