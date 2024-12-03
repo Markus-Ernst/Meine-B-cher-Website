@@ -143,7 +143,7 @@
     changeBackground();
 </script>
 <div class="content">
-    <h1>Willkommen auf meiner Webseite!</h1>
+    <h1>Willkommen auf meiner Bücher  Webseite!</h1>
     <p>Hier finden Sie Informationen, Bilder und spannende Inhalte.</p>
 </div>
 <body>
@@ -184,7 +184,7 @@
             <div class="buch">
                 <img src="https://i.ibb.co/41C3fmF/Spirituelle-Symbole-die-Auserw-hlten-Gottes-und-Engel-und-engelszahlen-20241129-063943-0000.jpg" alt="Die Auserwählten Gottes">
                 <div>
-                    <h2>Buch 1: Die Auserwählten Gottes</h2>
+                    <h2>Buch 1: Die Auserwählten Gottes 1 Euro</h2>
                     <p>Dieses Buch erzählt die kraftvolle und inspirierende Reise eines unerschütterlichen Geistes.</p>
                     <p><a href="https://drive.google.com/uc?id=18cX8fyiwfucot9cXTL-74tVoKhS-B2Zd&export=download" target="_blank">Download Buch 1</a></p>
                 </div>
@@ -192,7 +192,7 @@
             <div class="buch">
                 <img src="https://i.ibb.co/X4NqHJr/cover.jpg" alt="Das verborgene Wissen des Universums">
                 <div>
-                    <h2>Buch 2: Das verborgene Wissen des Universums</h2>
+                    <h2>Buch 2: Das verborgene Wissen des Universums 2 Euro</h2>
                     <p>Eine Reise durch die Geheimnisse des Universums und alte Weisheiten.</p>
                     <p><a href="https://drive.google.com/uc?id=1EL1rWSntQdNL4cRgVeW7ToZHcEtdIiYZ&export=download" target="_blank">Download Buch 2</a></p>
                 </div>
@@ -200,7 +200,7 @@
             <div class="buch">
                 <img src="https://i.ibb.co/KbkKw96/DALL-E-2024-11-29-08-55-12-An-epic-vibrant-illustration-of-a-modern-day-Robin-Hood-character-standin.webp" alt="Robin Hood und der verlorene Schlüssel">
                 <div>
-                    <h2>Buch 3: Robin Hood und der verlorene Schlüssel</h2>
+                    <h2>Buch 3: Robin Hood und der verlorene Schlüssel1 Euro</h2>
                     <p>Ein spannendes Abenteuer voller Mut, Freundschaft und Geheimnisse.</p>
                     <p><a href="https://drive.google.com/uc?id=1TAznQvWu6T9tGWdWZWHGZTeGIphcwYJK&export=download" target="_blank">Download Buch 3</a></p>
                 </div>
@@ -458,49 +458,94 @@ Genießen sie die neue freie Welt
 </body>
 </html>
 
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Bezahlfunktion für Buch 1</title>
+    <script src="https://pay.google.com/gp/p/js/pay.js" async></script>
+    <script>
+        // Google Pay API Version
+        const baseRequest = {
+            apiVersion: 2,
+            apiVersionMinor: 0
+        };
 
-<?php
-// PayPal SDK oder API-Anbindung einfügen
-require 'paypal/autoload.php'; // Beispiel: Für PayPal-Integration
+        // Unterstützte Zahlungsmethoden
+        const allowedCardNetworks = ["VISA", "MASTERCARD"];
+        const allowedCardAuthMethods = ["PAN_ONLY", "CRYPTOGRAM_3DS"];
 
-use PayPal\Api\Payer;
-use PayPal\Api\Amount;
-use PayPal\Api\Transaction;
-use PayPal\Api\RedirectUrls;
+        // Zahlungsdatenanforderung
+        const tokenizationSpecification = {
+            type: 'PAYMENT_GATEWAY',
+            parameters: {
+                'gateway': 'example', // Ersetzen Sie 'example' durch Ihren Zahlungsanbieter
+                'gatewayMerchantId': 'exampleMerchantId' // Ersetzen Sie durch Ihre Merchant ID
+            }
+        };
 
-// E-Mail-Adresse vom Formular
-$email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
+        const cardPaymentMethod = {
+            type: 'CARD',
+            parameters: {
+                allowedAuthMethods: allowedCardAuthMethods,
+                allowedCardNetworks: allowedCardNetworks
+            },
+            tokenizationSpecification: tokenizationSpecification
+        };
 
-// Validierung
-if (!$email) {
-    die("markus.reinheim@googlemail.com");
-}
+        const paymentDataRequest = Object.assign({}, baseRequest, {
+            allowedPaymentMethods: [cardPaymentMethod],
+            merchantInfo: {
+                merchantName: 'Ihr Unternehmensname',
+                merchantId: 'Ihre Merchant ID'
+            },
+            transactionInfo: {
+                totalPriceStatus: 'FINAL',
+                totalPrice: '1.00', // Preis für Buch 1
+                currencyCode: 'EUR'
+            }
+        });
 
-// Bezahlung vorbereiten
-$payer = new Payer();
-$payer->setPaymentMethod("paypal");
+        // Initialisierung des Google Pay Clients
+        const paymentsClient = new google.payments.api.PaymentsClient({ environment: 'TEST' });
 
-$amount = new Amount();
-$amount->setTotal("10.00"); // Preis der Downloads
-$amount->setCurrency("EUR");
+        // Überprüfen, ob Google Pay verfügbar ist
+        paymentsClient.isReadyToPay({
+            allowedPaymentMethods: [cardPaymentMethod]
+        }).then(function(response) {
+            if (response.result) {
+                // Google Pay Button anzeigen
+                const button = paymentsClient.createButton({
+                    onClick: onGooglePayButtonClicked
+                });
+                document.getElementById('google-pay-button').appendChild(button);
+            }
+        }).catch(function(err) {
+            console.error(err);
+        });
 
-$transaction = new Transaction();
-$transaction->setAmount($amount);
-$transaction->setDescription("Download von Dateien");
+        // Event-Handler für den Google Pay Button
+        function onGooglePayButtonClicked() {
+            paymentsClient.loadPaymentData(paymentDataRequest).then(function(paymentData) {
+                // Hier Zahlung verarbeiten und Download-Link freigeben
+                // Beispiel: document.getElementById('download-link').style.display = 'block';
+            }).catch(function(err) {
+                console.error(err);
+            });
+        }
+    </script>
+</head>
+<body>
+    <div class="buch">
+        <img src="https://i.ibb.co/41C3fmF/Spirituelle-Symbole-die-Auserw-hlten-Gottes-und-Engel-und-engelszahlen-20241129-063943-0000.jpg" alt="Die Auserwählten Gottes">
+        <div>
+            <h2>Buch 1: Die Auserwählten Gottes 1 Euro</h2>
+            <p>Dieses Buch erzählt die kraftvolle und inspirierende Reise eines unerschütterlichen Geistes.</p>
+            <div id="google-pay-button"></div>
+            <p id="download-link" style="display:none;">
+                <a href="https://drive.google.com/uc?id=18cX8fyiwfucot9cXTL-74tVoKhS-B2Zd&export=download" target="_blank">Download Buch 1</a>
+            </p>
+        </div>
+    </div>
+</body>
 
-$redirectUrls = new RedirectUrls();
-$redirectUrls->setReturnUrl("https://https://markus-ernst.github.io/Meine-B-cher-Website//success.php?email=$email")
-             ->setCancelUrl("https://https://markus-ernst.github.io/Meine-B-cher-Website//cancel.php");
-
-$payment = new PayPal\Api\Payment();
-$payment->setIntent("sale")
-        ->setPayer($payer)
-        ->setTransactions(array($transaction))
-        ->setRedirectUrls($redirectUrls);
-
-try {
-    $payment->create($apiContext);
-    header("Location: " . $payment->getApprovalLink());
-} catch (Exception $ex) {
-    die("Fehler bei der Bezahlung: " . $ex->getMessage());
-}
