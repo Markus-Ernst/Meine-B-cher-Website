@@ -440,3 +440,67 @@ Genießen sie die neue freie Welt
         allowfullscreen>
 </iframe>
     
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bezahlfunktion</title>
+</head>
+<body>
+    <h1>Downloads kaufen</h1>
+    <p>Bitte bezahlen Sie, um die Dateien herunterzuladen.</p>
+    <form action="process_payment.php" method="POST">
+        <label for="email">markus.reinheim@googlemail.com:</label>
+        <input type="email" id="email" name="email" required>
+        <button type="submit">Bezahlen mit PayPal</button>
+    </form>
+</body>
+</html>
+
+
+<?php
+// PayPal SDK oder API-Anbindung einfügen
+require 'paypal/autoload.php'; // Beispiel: Für PayPal-Integration
+
+use PayPal\Api\Payer;
+use PayPal\Api\Amount;
+use PayPal\Api\Transaction;
+use PayPal\Api\RedirectUrls;
+
+// E-Mail-Adresse vom Formular
+$email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
+
+// Validierung
+if (!$email) {
+    die("markus.reinheim@googlemail.com");
+}
+
+// Bezahlung vorbereiten
+$payer = new Payer();
+$payer->setPaymentMethod("paypal");
+
+$amount = new Amount();
+$amount->setTotal("10.00"); // Preis der Downloads
+$amount->setCurrency("EUR");
+
+$transaction = new Transaction();
+$transaction->setAmount($amount);
+$transaction->setDescription("Download von Dateien");
+
+$redirectUrls = new RedirectUrls();
+$redirectUrls->setReturnUrl("https://https://markus-ernst.github.io/Meine-B-cher-Website//success.php?email=$email")
+             ->setCancelUrl("https://https://markus-ernst.github.io/Meine-B-cher-Website//cancel.php");
+
+$payment = new PayPal\Api\Payment();
+$payment->setIntent("sale")
+        ->setPayer($payer)
+        ->setTransactions(array($transaction))
+        ->setRedirectUrls($redirectUrls);
+
+try {
+    $payment->create($apiContext);
+    header("Location: " . $payment->getApprovalLink());
+} catch (Exception $ex) {
+    die("Fehler bei der Bezahlung: " . $ex->getMessage());
+}
