@@ -678,3 +678,95 @@
   </script>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bestätigungsbutton aktivieren</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: #f4f4f4;
+      color: #333;
+    }
+
+    #popup {
+      padding: 20px;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    .question {
+      margin: 10px 0;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      background: #ccc;
+      color: white;
+      cursor: not-allowed; /* Standardmäßig deaktiviert */
+      opacity: 0.6; /* Visuelle Deaktivierung */
+    }
+
+    button.active {
+      background: #007BFF;
+      cursor: pointer;
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+  <div id="popup">
+    <h2>Bitte bestätigen Sie</h2>
+    <p>Beantworten Sie die folgenden Fragen, um fortzufahren:</p>
+    <div class="question">
+      <label><input type="checkbox" class="question-input"> Ich akzeptiere die AGB.</label>
+    </div>
+    <div class="question">
+      <label><input type="checkbox" class="question-input"> Ich stimme der Datenschutzerklärung zu.</label>
+    </div>
+    <button id="confirm-button" disabled>Weiter</button>
+  </div>
+
+  <script>
+    // Selektiere Checkboxen und den Button
+    const checkboxes = document.querySelectorAll('.question-input');
+    const confirmButton = document.getElementById('confirm-button');
+
+    // Funktion: Überprüft, ob alle Checkboxen angeklickt sind
+    function updateButtonState() {
+      const allChecked = Array.from(checkboxes).every(checkbox => checkbox.checked);
+      if (allChecked) {
+        confirmButton.disabled = false;
+        confirmButton.classList.add('active');
+      } else {
+        confirmButton.disabled = true;
+        confirmButton.classList.remove('active');
+      }
+    }
+
+    // Füge Eventlistener zu allen Checkboxen hinzu
+    checkboxes.forEach(checkbox => {
+      checkbox.addEventListener('change', updateButtonState);
+    });
+
+    // Weiterleitung bei Klick auf den Button
+    confirmButton.addEventListener('click', () => {
+      alert('Weiterleitung zur nächsten Seite.');
+      window.location.href = 'https://example.com'; // Zielseite
+    });
+  </script>
+</body>
+</html>
