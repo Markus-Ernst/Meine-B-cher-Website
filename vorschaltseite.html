@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Neue Weltordnung – Zustimmung erforderlich</title>
+    <title>Zustimmung erforderlich</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -20,160 +20,77 @@
             margin: auto;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
-        h1 {
-            color: #333;
-        }
-        p {
-            font-size: 14px;
-            color: #555;
-        }
-        .checkbox-group {
-            text-align: left;
-            margin: 20px 0;
-        }
-        .checkbox-group input {
-            margin-right: 10px;
-        }
         .btn {
             background-color: #28a745;
             color: white;
             padding: 10px 20px;
             border: none;
             border-radius: 5px;
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+        .btn.active {
             cursor: pointer;
-            font-size: 16px;
-        }
-        .btn:disabled {
-            background-color: #aaa;
-        }
-        .btn:hover:enabled {
-            background-color: #218838;
+            opacity: 1;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Willkommen in der Neuen Weltordnung!</h1>
-        <p>Bevor Sie unsere Seite besuchen können, stimmen Sie bitte den folgenden Bedingungen zu:</p>
-        <form id="consentForm">
-            <div class="checkbox-group">
-                <label><input type="checkbox" id="checkbox1"> Ja, ich stimme der Neuen Weltordnung zu.</label><br>
-                <label><input type="checkbox" id="checkbox2"> Ja, ich gebe zum Besuch dieser Seite alle meine Rechte ab.</label><br>
-                <label><input type="checkbox" id="checkbox3"> Ja, ich akzeptiere die vollständige Überwachung meines Lebens.</label><br>
-                <label><input type="checkbox" id="checkbox4"> Ja, ich werde ab jetzt ausschließlich Toleranz praktizieren.</label><br>
-            </div>
-            <button type="button" class="btn" id="submitButton" disabled>Weiter zur Seite</button>
-        </form>
-        <p><em>Hinweis: Diese Seite ist rein satirisch und dient nur der Unterhaltung. Bitte nicht ernst nehmen!</em></p>
+        <h1>Zustimmung erforderlich</h1>
+        <p>Bitte stimmen Sie den folgenden Bedingungen zu, um fortzufahren:</p>
+        <div>
+            <label><input type="checkbox" id="checkbox1"> Ich stimme der Datenschutzerklärung zu.</label><br>
+            <label><input type="checkbox" id="checkbox2"> Ich akzeptiere die Nutzungsbedingungen.</label><br>
+        </div>
+        <button id="confirmButton" class="btn" disabled>Weiter zur Seite</button>
     </div>
 
     <script>
         const checkboxes = document.querySelectorAll("input[type='checkbox']");
-        const button = document.getElementById("submitButton");
+        const confirmButton = document.getElementById("confirmButton");
 
-        // Aktivieren des Buttons, wenn alle Checkboxen ausgewählt sind
+        // Aktiviert den Button, wenn alle Checkboxen ausgewählt sind
         checkboxes.forEach(checkbox => {
-            checkbox.addEventListener('change', () => {
-                button.disabled = !Array.from(checkboxes).every(cb => cb.checked);
+            checkbox.addEventListener("change", () => {
+                const allChecked = Array.from(checkboxes).every(cb => cb.checked);
+                confirmButton.disabled = !allChecked;
+                confirmButton.classList.toggle("active", allChecked);
             });
         });
 
-        // Weiterleitung auf die Hauptseite bei Klick
-        button.addEventListener('click', () => {
-            window.location.href = "https://markus-ernst.github.io/Meine-B-cher-Website/";
+        // Weiterleitung zur Hauptseite bei Klick auf den Button
+        confirmButton.addEventListener("click", () => {
+            window.location.href = "index.html"; // Hauptseite
         });
     </script>
 </body>
 </html>
+"""
+
+# Correct the index.html to ensure proper structure for main content display
+corrected_index_content = """
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bestätigungsbutton aktivieren</title>
-  <style>
-    body, html {
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      background: #f4f4f4;
-      color: #333;
-    }
-
-    #popup {
-      padding: 20px;
-      background: white;
-      border-radius: 8px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-      text-align: center;
-    }
-
-    .question {
-      margin: 10px 0;
-    }
-
-    button {
-      margin-top: 20px;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 5px;
-      background: #ccc;
-      color: white;
-      cursor: not-allowed; /* Standardmäßig deaktiviert */
-      opacity: 0.6; /* Visuelle Deaktivierung */
-    }
-
-    button.active {
-      background: #007BFF;
-      cursor: pointer;
-      opacity: 1;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hauptseite</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            margin-top: 50px;
+        }
+    </style>
 </head>
 <body>
-  <div id="popup">
-    <h2>Bitte bestätigen Sie</h2>
-    <p>Beantworten Sie die folgenden Fragen, um fortzufahren:</p>
-    <div class="question">
-      <label><input type="checkbox" class="question-input"> Ich akzeptiere die AGB.</label>
-    </div>
-    <div class="question">
-      <label><input type="checkbox" class="question-input"> Ich stimme der Datenschutzerklärung zu.</label>
-    </div>
-    <button id="confirm-button" disabled>Weiter</button>
-  </div>
-
-  <script>
-    // Selektiere Checkboxen und den Button
-    const checkboxes = document.querySelectorAll('.question-input');
-    const confirmButton = document.getElementById('confirm-button');
-
-    // Funktion: Überprüft, ob alle Checkboxen angeklickt sind
-    function updateButtonState() {
-      const allChecked = Array.from(checkboxes).every(checkbox => checkbox.checked);
-      if (allChecked) {
-        confirmButton.disabled = false;
-        confirmButton.classList.add('active');
-      } else {
-        confirmButton.disabled = true;
-        confirmButton.classList.remove('active');
-      }
-    }
-
-    // Füge Eventlistener zu allen Checkboxen hinzu
-    checkboxes.forEach(checkbox => {
-      checkbox.addEventListener('change', updateButtonState);
-    });
-
-    // Weiterleitung bei Klick auf den Button
-    confirmButton.addEventListener('click', () => {
-      alert('Weiterleitung zur nächsten Seite.');
-      window.location.href = 'https://example.com'; // Zielseite
-    });
-  </script>
+    <h1>Willkommen auf der Hauptseite</h1>
+    <p>Vielen Dank für Ihre Zustimmung. Sie können jetzt die Inhalte dieser Webseite genießen.</p>
 </body>
 </html>
