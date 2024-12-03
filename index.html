@@ -1,78 +1,110 @@
-    </footer>
-</body>
-</html>
 <!DOCTYPE html>
 <html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zustimmung erforderlich</title>
+    <title>Meine Webseite mit Diashow</title>
     <style>
-        body {
+        /* Grundlegendes Styling */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
+            color: #333;
+        }
+
+        /* Diashow Hintergrund */
+        .slideshow-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; /* Hintergrund hinter allen Inhalten */
+        }
+
+        .slideshow-container div {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            animation: fade 20s infinite;
+        }
+
+        /* Animation für Überblendung */
+        @keyframes fade {
+            0%, 12.5% { opacity: 1; z-index: 1; }
+            25% { opacity: 0; z-index: 0; }
+            100% { opacity: 0; }
+        }
+
+        /* Reihenfolge der Hintergrundbilder */
+        .slideshow-container div:nth-child(1) { animation-delay: 0s; background-image: url('hintergrund1.png'); }
+        .slideshow-container div:nth-child(2) { animation-delay: 5s; background-image: url('hintergrund2.png'); }
+        .slideshow-container div:nth-child(3) { animation-delay: 10s; background-image: url('hintergrund3.png'); }
+        .slideshow-container div:nth-child(4) { animation-delay: 15s; background-image: url('hintergrund4.png'); }
+
+        /* Inhaltscontainer */
+        .content {
+            position: relative;
+            z-index: 1; /* Inhalte über dem Hintergrund */
             text-align: center;
             padding: 20px;
         }
-        .container {
-            background: white;
-            border: 1px solid #ccc;
-            border-radius: 10px;
-            padding: 20px;
-            width: 50%;
-            margin: auto;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        .btn {
-            background-color: #28a745;
-            color: white;
-            padding: 10px 20px;
+
+        iframe {
             border: none;
-            border-radius: 5px;
-            cursor: not-allowed;
-            opacity: 0.6;
+            width: 560px;
+            height: 315px;
+            max-width: 90%; /* Responsives Design */
         }
-        .btn.active {
-            cursor: pointer;
-            opacity: 1;
+
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Zustimmung erforderlich</h1>
-        <p>Bitte stimmen Sie den folgenden Bedingungen zu, um fortzufahren:</p>
-        <div>
-            <label><input type="checkbox" class="consent-checkbox"> Ich stimme der Datenschutzerklärung zu.</label><br>
-            <label><input type="checkbox" class="consent-checkbox"> Ich akzeptiere die Nutzungsbedingungen.</label><br>
-        </div>
-        <button id="confirmButton" class="btn" disabled>Weiter zur Seite</button>
+    <!-- Diashow Hintergrund -->
+    <div class="slideshow-container">
+        <div></div> <!-- Hintergrund 1 -->
+        <div></div> <!-- Hintergrund 2 -->
+        <div></div> <!-- Hintergrund 3 -->
+        <div></div> <!-- Hintergrund 4 -->
     </div>
 
-    <script>
-        // Selektiere Checkboxen und den Button
-        const checkboxes = document.querySelectorAll(".consent-checkbox");
-        const confirmButton = document.getElementById("confirmButton");
+    <!-- Hauptinhalt -->
+    <div class="content">
+        <h1>Willkommen auf meiner Webseite</h1>
+        <p>Dies ist der Hauptinhalt Ihrer Webseite. Sie können diesen Abschnitt nach Bedarf anpassen.</p>
 
-        // Funktion: Überprüfen, ob alle Checkboxen aktiviert sind
-        function updateButtonState() {
-            const allChecked = Array.from(checkboxes).every(cb => cb.checked);
-            confirmButton.disabled = !allChecked;
-            confirmButton.classList.toggle("active", allChecked);
-        }
+        <!-- Eingebettetes YouTube-Video -->
+        <h2>Mein YouTube-Video</h2>
+        <iframe 
+            src="https://www.youtube.com/embed/51t3fTR1jd8" 
+            title="YouTube video player" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen>
+        </iframe>
+    </div>
 
-        // Event-Listener für alle Checkboxen
-        checkboxes.forEach(checkbox => {
-            checkbox.addEventListener("change", updateButtonState);
-        });
-
-        // Event-Listener für den Button
-        confirmButton.addEventListener("click", () => {
-            window.location.href = "index.html"; // Weiterleitung zur Hauptseite
-        });
-    </script>
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Meine Webseite. Alle Rechte vorbehalten.</p>
+    </footer>
 </body>
 </html>
+
 
     <!-- Hauptinhalt -->
     <div id="main-content">
