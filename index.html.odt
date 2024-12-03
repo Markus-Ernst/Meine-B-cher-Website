@@ -1,0 +1,152 @@
+# Speichern des aktuellen HTML-Codes in einer Datei
+html_code = """<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monika Ernst - Private Webseite</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+    <style>
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('b.hintergrund.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: #333;
+            line-height: 1.8;
+            transition: all 0.5s ease-in-out;
+        }
+        header {
+            text-align: center;
+            padding: 60px 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border-bottom: 5px solid #ddd;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        header img {
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+            display: block;
+            margin: 0 auto;
+            border: 3px solid #333;
+            animation: fadeIn 2s;
+        }
+        header h1 {
+            margin: 20px 0;
+            font-size: 3em;
+            color: #444;
+        }
+        header p {
+            font-size: 1.2em;
+            color: #666;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background: #333;
+            padding: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 20px;
+            font-size: 1.2em;
+            transition: color 0.3s;
+        }
+        nav a:hover {
+            color: #ffd700;
+        }
+        section {
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.9);
+            margin: 20px auto;
+            max-width: 900px;
+            border-radius: 12px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 1.5s;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #333;
+            color: #fff;
+        }
+        footer a {
+            color: #ffd700;
+            text-decoration: none;
+        }
+
+        /* Animationen */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="Profil.png" alt="Profilbild von Monika Ernst">
+        <h1>Willkommen auf meiner Webseite!</h1>
+        <p>Einblicke in das Leben von Monika Ernst und ihre Welt – eine Plattform für Familie, Freunde und Inspiration.</p>
+    </header>
+    <nav>
+        <a href="#ueber-mich">Über mich</a>
+        <a href="#links">Links</a>
+        <a href="#impressum">Impressum</a>
+        <a href="#datenschutz">Datenschutz</a>
+    </nav>
+    <main>
+        <section id="ueber-mich">
+            <h2>Über mich</h2>
+            <p>Mein Name ist Monika Ernst, und ich bin ein echter Familienmensch. Mein Herz schlägt für die Familie, die Natur und unsere geliebten Haustiere. Besonders unser Hund ist ein wichtiger Teil meines Lebens. Mit großer Freude widme ich mich auch sozialen Themen und helfe, wo immer ich kann.</p>
+            <p>Meine Hobbys umfassen Spaziergänge in der Natur, Lesen und kreative Arbeiten. Diese Webseite ist ein kleines Projekt, das meine Interessen und meine Welt widerspiegelt.</p>
+        </section>
+        <section id="links">
+            <h2>Wichtige Links</h2>
+            <ul>
+                <li><a href="https://drive.google.com/file/d/1Uq6BN20eqbKI2tXgut0sLYFmaPDTwRAA/view?usp=drivesdk" target="_blank">Interessantes Dokument 1</a></li>
+                <li><a href="https://drive.google.com/file/d/1QIx_D4_-215T0yjRplJy9rN4QSCfaFfq/view?usp=drivesdk" target="_blank">Interessantes Dokument 2</a></li>
+                <li><a href="https://drive.google.com/file/d/1WP_qrdXerkIvR2DXKTOtLaEBGVfxnWEc/view?usp=drivesdk" target="_blank">Interessantes Dokument 3</a></li>
+                <li><a href="https://drive.google.com/file/d/1Xn_SiY__v7hHy5QiUhx_bWHTjC2KZcU4/view?usp=drivesdk" target="_blank">Interessantes Dokument 4</a></li>
+            </ul>
+        </section>
+        <section id="impressum">
+            <h2>Impressum</h2>
+            <p><strong>Verantwortlich für den Inhalt:</strong></p>
+            <p>Monika Ernst<br>
+            Willy-Brandt-Straße 11<br>
+            64354 Reinheim<br>
+            <strong>Kontakt:</strong> <a href="mailto:monika.ernst493@gmail.com">monika.ernst493@gmail.com</a></p>
+            <p><strong>Hinweis gemäß § 5 TMG:</strong> Diese Webseite dient ausschließlich privaten Zwecken und wird nicht kommerziell betrieben.</p>
+            <p><strong>Streitbeilegung:</strong> Die EU stellt eine Plattform zur Online-Streitbeilegung bereit: <a href="https://ec.europa.eu/consumers/odr">https://ec.europa.eu/consumers/odr</a>. Wir sind jedoch nicht verpflichtet, an einem Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>
+        </section>
+        <section id="datenschutz">
+            <h2>Datenschutzerklärung</h2>
+            <p>Diese Webseite speichert keine personenbezogenen Daten ohne ausdrückliche Zustimmung. Sollten Sie Fragen zum Datenschutz haben, kontaktieren Sie mich bitte unter: <a href="mailto:monika.ernst493@gmail.com">monika.ernst493@gmail.com</a>.</p>
+            <p>Es gelten die Bestimmungen der Datenschutz-Grundverordnung (DSGVO).</p>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Monika Ernst - Alle Rechte vorbehalten.</p>
+    </footer>
+</body>
+</html>
+"""
+
+file_path = "/mnt/data/monika_ernst_website.html"
+
+with open(file_path, "w") as file:
+    file.write(html_code)
+
+file_path
