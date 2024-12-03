@@ -71,25 +71,17 @@
         const checkboxes = document.querySelectorAll("input[type='checkbox']");
         const button = document.getElementById("submitButton");
 
+        // Aktivieren des Buttons, wenn alle Checkboxen ausgewählt sind
         checkboxes.forEach(checkbox => {
             checkbox.addEventListener('change', () => {
                 button.disabled = !Array.from(checkboxes).every(cb => cb.checked);
             });
         });
 
+        // Weiterleitung auf die Hauptseite bei Klick
         button.addEventListener('click', () => {
-            alert("Willkommen in der Neuen Weltordnung! Viel Spaß in unserer satirischen Welt.");
-            // Hier kann der Benutzer weitergeleitet werden, z. B. mit window.location.href = 'https://deineseite.de';
+            window.location.href = "https://markus-ernst.github.io/Meine-B-cher-Website/";
         });
     </script>
 </body>
 </html>
-// JavaScript hinzufügen, um die Hauptseite auszublenden
-document.body.style.display = "none";
-document.getElementById("submitButton").addEventListener("click", () => {
-    document.body.style.display = "block"; // Zeige die Hauptseite nach Bestätigung
-    document.querySelector(".container").style.display = "none"; // Verstecke die Vorschaltseite
-});
-button.addEventListener('click', () => {
-    window.location.href = "https://deineseite.de"; // Ersetze mit deiner Haupt-URL
-});
