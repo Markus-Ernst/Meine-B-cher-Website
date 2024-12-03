@@ -364,6 +364,108 @@
     function showOldPopup() {
       document.getElementById('popup').style.display = 'block';
     }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bestätigungsbutton</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: #333;
+      color: white;
+    }
+
+    #popup {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 90%;
+      max-width: 400px;
+      background: white;
+      color: black;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    }
+
+    button {
+      margin-top: 15px;
+      padding: 10px 20px;
+      background: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: not-allowed; /* Standardmäßig deaktiviert */
+      opacity: 0.5; /* Visuelle Deaktivierung */
+    }
+
+    button.active {
+      cursor: pointer;
+      opacity: 1;
+      background: #0056b3;
+    }
+
+    .question {
+      margin: 10px 0;
+    }
+
+    .question input {
+      margin-right: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div id="popup">
+    <h2>Fragen</h2>
+    <p>Bitte beantworten Sie alle Fragen, um fortzufahren:</p>
+    <div class="question">
+      <label><input type="checkbox" class="question-input"> Ich akzeptiere die AGB.</label>
+    </div>
+    <div class="question">
+      <label><input type="checkbox" class="question-input"> Ich stimme der Datenschutzerklärung zu.</label>
+    </div>
+    <button id="confirm-button" onclick="redirect()" disabled>Weiter</button>
+  </div>
+
+  <script>
+    // Selektiere alle Checkboxen und den Button
+    const checkboxes = document.querySelectorAll('.question-input');
+    const confirmButton = document.getElementById('confirm-button');
+
+    // Funktion, um den Button aktiv zu schalten
+    function updateButtonState() {
+      const allChecked = Array.from(checkboxes).every(checkbox => checkbox.checked);
+      if (allChecked) {
+        confirmButton.disabled = false;
+        confirmButton.classList.add('active');
+      } else {
+        confirmButton.disabled = true;
+        confirmButton.classList.remove('active');
+      }
+    }
+
+    // Füge Eventlistener zu allen Checkboxen hinzu
+    checkboxes.forEach(checkbox => {
+      checkbox.addEventListener('change', updateButtonState);
+    });
+
+    // Weiterleitung, wenn der Button geklickt wird
+    function redirect() {
+      window.location.href = 'neue_seite.html'; // Zielseite anpassen
+    }
+  </script>
+</body>
+</html>
 
     // Zeigt die neue Vorschaltseite und schließt die alte
     function showNewPopup() {
