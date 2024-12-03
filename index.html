@@ -440,151 +440,49 @@ Genießen sie die neue freie Welt
         allowfullscreen>
 </iframe>
     
-<!DOCTYPE html>
-<html lang="de">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bezahlfunktion</title>
-</head>
-<body>
-    <h1>Downloads kaufen</h1>
-    <p>Bitte bezahlen Sie, um die Dateien herunterzuladen.</p>
-    <form action="process_payment.php" method="POST">
-        <label for="email">markus.reinheim@googlemail.com:</label>
-        <input type="email" id="email" name="email" required>
-        <button type="submit">Bezahlen mit PayPal</button>
-    </form>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="de">
-<head>
-    <meta charset="UTF-8">
-    <title>Bücher-Shop</title>
-    <script src="https://pay.google.com/gp/p/js/pay.js" async></script>
-    <script src="https://www.paypal.com/sdk/js?client-id=YOUR_CLIENT_ID&currency=EUR"></script>
-    <style>
-        .buch {
-            margin-bottom: 20px;
+<?php
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // PayPal- oder Google Pay-API prüfen
+    $paymentStatus = validatePayment($_POST); // Funktion zur API-Validierung
+    if ($paymentStatus) {
+        // Temporärer Link erstellen
+        $downloadLink = generateTemporaryLink($_POST['book_id']); // Buch-ID
+        echo json_encode(['success' => true, 'download_link' => $downloadLink]);
+    } else {
+        echo json_encode(['success' => false, 'message' => 'Zahlung fehlgeschlagen.']);
+    }
+}
+
+function validatePayment($data) {
+    // Hier erfolgt die Validierung der Zahlung über die API
+    return true; // Beispiel: immer erfolgreich
+}
+
+function generateTemporaryLink($bookId) {
+    // Temporären Download-Link erstellen
+    $links = [
+        'book1' => 'https://secure-download-server.com/download/book1',
+        'book2' => 'https://secure-download-server.com/download/book2',
+        'book3' => 'https://secure-download-server.com/download/book3',
+    ];
+    return $links[$bookId] ?? null;
+}
+?>
+function handlePayment(bookId) {
+    const formData = new FormData();
+    formData.append('book_id', bookId);
+
+    fetch('process_payment.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            window.location.href = data.download_link; // Redirect zum Download
+        } else {
+            alert(data.message);
         }
-        img {
-            max-width: 150px;
-        }
-    </style>
-</head>
-<body>
-    <h1>Bücher-Shop</h1>
-    <section>
-        <!-- Buch 1 -->
-        <div class="buch">
-            <img src="https://i.ibb.co/41C3fmF/Spirituelle-Symbole-die-Auserw-hlten-Gottes-und-Engel-und-engelszahlen-20241129-063943-0000.jpg" alt="Die Auserwählten Gottes">
-            <div>
-                <h2>Buch 1: Die Auserwählten Gottes - 1 Euro</h2>
-                <p>Dieses Buch erzählt die kraftvolle und inspirierende Reise eines unerschütterlichen Geistes.</p>
-                <div id="google-pay-button-book1"></div>
-                <div id="paypal-button-container-book1"></div>
-                <p id="download-link-book1" style="display:none;">
-                    <a href="https://drive.google.com/uc?id=18cX8fyiwfucot9cXTL-74tVoKhS-B2Zd&export=download" target="_blank">Download Buch 1</a>
-                </p>
-            </div>
-        </div>
-
-        <!-- Buch 2 -->
-        <div class="buch">
-            <img src="https://i.ibb.co/X4NqHJr/cover.jpg" alt="Das verborgene Wissen des Universums">
-            <div>
-                <h2>Buch 2: Das verborgene Wissen des Universums - 2 Euro</h2>
-                <p>Eine Reise durch die Geheimnisse des Universums und alte Weisheiten.</p>
-                <div id="google-pay-button-book2"></div>
-                <div id="paypal-button-container-book2"></div>
-                <p id="download-link-book2" style="display:none;">
-                    <a href="https://drive.google.com/uc?id=1EL1rWSntQdNL4cRgVeW7ToZHcEtdIiYZ&export=download" target="_blank">Download Buch 2</a>
-                </p>
-            </div>
-        </div>
-
-        <!-- Buch 3 -->
-        <div class="buch">
-            <img src="https://i.ibb.co/KbkKw96/DALL-E-2024-11-29-08-55-12-An-epic-vibrant-illustration-of-a-modern-day-Robin-Hood-character-standin.webp" alt="Robin Hood und der verlorene Schlüssel">
-            <div>
-                <h2>Buch 3: Robin Hood und der verlorene Schlüssel - 1 Euro</h2>
-                <p>Ein spannendes Abenteuer voller Mut, Freundschaft und Geheimnisse.</p>
-                <div id="google-pay-button-book3"></div>
-                <div id="paypal-button-container-book3"></div>
-                <p id="download-link-book3" style="display:none;">
-                    <a href="https://drive.google.com/uc?id=1TAznQvWu6T9tGWdWZWHGZTeGIphcwYJK&export=download" target="_blank">Download Buch 3</a>
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <script>
-        // PayPal Button für jedes Buch
-        const books = [
-            { id: 'book1', price: '1.00', downloadLink: 'https://drive.google.com/uc?id=18cX8fyiwfucot9cXTL-74tVoKhS-B2Zd&export=download' },
-            { id: 'book2', price: '2.00', downloadLink: 'https://drive.google.com/uc?id=1EL1rWSntQdNL4cRgVeW7ToZHcEtdIiYZ&export=download' },
-            { id: 'book3', price: '1.00', downloadLink: 'https://drive.google.com/uc?id=1TAznQvWu6T9tGWdWZWHGZTeGIphcwYJK&export=download' }
-        ];
-
-        books.forEach(book => {
-            paypal.Buttons({
-                createOrder: function(data, actions) {
-                    return actions.order.create({
-                        purchase_units: [{
-                            amount: { value: book.price }
-                        }]
-                    });
-                },
-                onApprove: function(data, actions) {
-                    return actions.order.capture().then(function(details) {
-                        document.getElementById(`download-link-${book.id}`).style.display = 'block';
-                    });
-                }
-            }).render(`#paypal-button-container-${book.id}`);
-        });
-
-        // Google Pay Button für Buch 1 (Beispiel, für andere Bücher ähnlich hinzufügen)
-        const paymentsClient = new google.payments.api.PaymentsClient({ environment: 'TEST' });
-        const baseRequest = {
-            apiVersion: 2,
-            apiVersionMinor: 0,
-            allowedPaymentMethods: [{
-                type: 'CARD',
-                parameters: {
-                    allowedAuthMethods: ["PAN_ONLY", "CRYPTOGRAM_3DS"],
-                    allowedCardNetworks: ["VISA", "MASTERCARD"]
-                },
-                tokenizationSpecification: {
-                    type: 'PAYMENT_GATEWAY',
-                    parameters: {
-                        gateway: 'example',
-                        gatewayMerchantId: 'exampleMerchantId'
-                    }
-                }
-            }]
-        };
-
-        const paymentDataRequest = Object.assign({}, baseRequest, {
-            transactionInfo: {
-                totalPriceStatus: 'FINAL',
-                totalPrice: '1.00',
-                currencyCode: 'EUR'
-            },
-            merchantInfo: {
-                merchantName: 'Ihr Unternehmensname'
-            }
-        });
-
-        paymentsClient.isReadyToPay({ allowedPaymentMethods: baseRequest.allowedPaymentMethods })
-            .then(response => {
-                if (response.result) {
-                    const button = paymentsClient.createButton({ onClick: () => paymentsClient.loadPaymentData(paymentDataRequest) });
-                    document.getElementById('google-pay-button-book1').appendChild(button);
-                }
-            })
-            .catch(console.error);
-    </script>
-</body>
-</html>
-
+    })
+    .catch(error => console.error('Error:', error));
+}
