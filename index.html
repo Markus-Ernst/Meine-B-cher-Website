@@ -529,3 +529,10 @@ function generateTemporaryLink($bookId) {
 
     // URL mit Token zurückgeben
     return "
+# Load and read the contents of index.html to analyze it
+index_html_path = "/mnt/data/Meine-B-cher-Website-main-extracted/Meine-B-cher-Website-main/index.html"
+
+with open(index_html_path, 'r', encoding='utf-8') as file:
+    index_html_content = file.read()
+
+index_html_content[:2000]  # Display the first 2000 characters of the file for review
