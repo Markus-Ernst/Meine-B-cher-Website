@@ -536,3 +536,81 @@ with open(index_html_path, 'r', encoding='utf-8') as file:
     index_html_content = file.read()
 
 index_html_content[:2000]  # Display the first 2000 characters of the file for review
+
+
+ 
+<?php
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $bookId = $_POST['book_id'] ?? null;
+    $orderId = $_POST['order_id'] ?? null;
+
+    if (!$bookId || !$orderId) {
+        header('Content-Type: application/json');
+        echo json_encode(['success' => false, 'message' => 'Ungültige Anfrage.']);
+        exit;
+    }
+
+    $paymentVerified = validatePayment($orderId);
+
+    if ($paymentVerified) {
+        $downloadLink = generateTemporaryLink($bookId);
+        header('Content-Type: application/json');
+        echo json_encode(['success' => true, 'download_link' => $downloadLink]);
+    } else {
+        header('Content-Type: application/json');
+        echo json_encode(['success' => false, 'message' => 'Zahlung fehlgeschlagen.']);
+    }
+    exit;
+}
+
+function validatePayment($orderId) {
+    return true; // Simulated validation for now
+}
+
+function generateTemporaryLink($bookId) {
+    $links = [
+        'book1' => 'https://secure-download-server.com/book1',
+        'book2' => 'https://secure-download-server.com/book2',
+        'book3' => 'https://secure-download-server.com/book3',
+    ];
+    return $links[$bookId] ?? null;
+}
+?>
+<?php
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $bookId = $_POST['book_id'] ?? null;
+    $orderId = $_POST['order_id'] ?? null;
+
+    if (!$bookId || !$orderId) {
+        header('Content-Type: application/json');
+        echo json_encode(['success' => false, 'message' => 'Ungültige Anfrage.']);
+        exit;
+    }
+
+    $paymentVerified = validatePayment($orderId);
+
+    if ($paymentVerified) {
+        $downloadLink = generateTemporaryLink($bookId);
+        header('Content-Type: application/json');
+        echo json_encode(['success' => true, 'download_link' => $downloadLink]);
+    } else {
+        header('Content-Type: application/json');
+        echo json_encode(['success' => false, 'message' => 'Zahlung fehlgeschlagen.']);
+    }
+    exit;
+}
+
+function validatePayment($orderId) {
+    return true; // Simulierte Validierung für Testzwecke
+}
+
+function generateTemporaryLink($bookId) {
+    $links = [
+        'book1' => 'https://secure-download-server.com/book1',
+        'book2' => 'https://secure-download-server.com/book2',
+        'book3' => 'https://secure-download-server.com/book3',
+    ];
+    return $links[$bookId] ?? null;
+}
+?>
+   
