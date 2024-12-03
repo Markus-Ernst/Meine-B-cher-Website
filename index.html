@@ -549,3 +549,73 @@ Genießen sie die neue freie Welt
     </div>
 </body>
 
+<script src="https://www.paypal.com/sdk/js?client-id=YOUR_CLIENT_ID&currency=EUR"></script>
+<div id="paypal-button-container-book1"></div>
+<script>
+  paypal.Buttons({
+    createOrder: function(data, actions) {
+      return actions.order.create({
+        purchase_units: [{
+          amount: {
+            value: '1.00' // Preis für Buch 1
+          }
+        }]
+      });
+    },
+    onApprove: function(data, actions) {
+      return actions.order.capture().then(function(details) {
+        // Zahlung erfolgreich
+        // Weiterleitung zum Download-Link für Buch 1
+        window.location.href = 'DOWNLOAD_LINK_BUCH_1';
+      });
+    }
+  }).render('#paypal-button-container-book1');
+</script>
+
+    
+<script src="https://www.paypal.com/sdk/js?client-id=YOUR_CLIENT_ID&currency=EUR"></script>
+<div id="paypal-button-container-book1"></div>
+<script>
+  paypal.Buttons({
+    createOrder: function(data, actions) {
+      return actions.order.create({
+        purchase_units: [{
+          amount: {
+            value: '1.00' // Preis für Buch 1
+          }
+        }]
+      });
+    },
+    onApprove: function(data, actions) {
+      return actions.order.capture().then(function(details) {
+        // Zahlung erfolgreich
+        // Weiterleitung zum Download-Link für Buch 2
+        window.location.href = 'DOWNLOAD_LINK_BUCH_1';
+      });
+    }
+  }).render('#paypal-button-container-book1');
+</script>
+
+<script src="https://www.paypal.com/sdk/js?client-id=YOUR_CLIENT_ID&currency=EUR"></script>
+<div id="paypal-button-container-book1"></div>
+<script>
+  paypal.Buttons({
+    createOrder: function(data, actions) {
+      return actions.order.create({
+        purchase_units: [{
+          amount: {
+            value: '1.00' // Preis für Buch 1
+          }
+        }]
+      });
+    },
+    onApprove: function(data, actions) {
+      return actions.order.capture().then(function(details) {
+        // Zahlung erfolgreich
+        // Weiterleitung zum Download-Link für Buch 3
+        window.location.href = 'DOWNLOAD_LINK_BUCH_1';
+      });
+    }
+  }).render('#paypal-button-container-book1');
+</script>
+    
