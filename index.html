@@ -486,73 +486,46 @@ function handlePayment(bookId) {
     })
     .catch(error => console.error('Error:', error));
 }
-<?php
+
+    <?php
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $paymentVerified = validatePayment($_POST['order_id']); // Funktion zur Validierung
-    if ($paymentVerified) {
-        $downloadLink = generateTemporaryLink($_POST['book_id']);
-        header("Location: $downloadLink"); // Weiterleitung zum Download
-        exit;
-    } else {
-        header("Location: error_page.php"); // Zurück zur Fehlermeldung
+    // Buch-ID und Order-ID aus der Anfrage lesen
+    $bookId = $_POST['book_id'] ?? null;
+    $orderId = $_POST['order_id'] ?? null;
+
+    // Prüfen, ob die Eingaben gültig sind
+    if (!$bookId || !$orderId) {
+        header('Content-Type: application/json');
+        echo json_encode(['success' => false, 'message' => 'Ungültige Anfrage.']);
         exit;
     }
+
+    // Zahlung validieren
+    $paymentVerified = validatePayment($orderId);
+
+    if ($paymentVerified) {
+        // Temporären Download-Link generieren
+        $downloadLink = generateTemporaryLink($bookId);
+        header('Content-Type: application/json');
+        echo json_encode(['success' => true, 'download_link' => $downloadLink]);
+    } else {
+        // Fehlerantwort senden
+        header('Content-Type: application/json');
+        echo json_encode(['success' => false, 'message' => 'Zahlung fehlgeschlagen.']);
+    }
+    exit;
 }
 
 function validatePayment($orderId) {
-    // Verbindung zur PayPal/Google Pay API, um die Zahlung zu prüfen
-    // Beispiel: Rückgabe true, wenn die Zahlung erfolgreich ist
-    return true; 
+    // Simulierte Prüfung – hier sollten API-Aufrufe an PayPal/Google Pay erfolgen
+    // Rückgabe true, wenn Zahlung erfolgreich ist
+    return true; // Beispielhaft immer erfolgreich
 }
 
 function generateTemporaryLink($bookId) {
-    // Temporären Link generieren
-    $links = [
-        'book1' => 'https://secure-download-server.com/book1',
-        'book2' => 'https://secure-download-server.com/book2',
-        'book3' => 'https://secure-download-server.com/book3',
-    ];
-    return $links[$bookId] ?? null;
-}
-?>
-document.querySelector('#paypal-button-container-book1').addEventListener('click', () => {
-    fetch('process_payment.php', {
-        method: 'POST',
-        body: JSON.stringify({ order_id: '12345', book_id: 'book1' })
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            window.location.href = data.download_link; // Weiterleitung zum sicheren Download
-        } else {
-            alert('Zahlung fehlgeschlagen. Bitte versuchen Sie es erneut.');
-        }
-    })
-    .catch(error => console.error('Fehler:', error));
-});
-function generateTemporaryLink($bookId) {
-    // Erstelle einen sicheren, zeitlich begrenzten Link
-    $token = bin2hex(random_bytes(16)); // Einzigartiger Token
-    file_put_contents("tokens/$token.txt", $bookId); // Speichere Token auf dem Server
-    return "download.php?token=$token";
-}
-<?php
-$token = $_GET['token'] ?? null;
-if ($token && file_exists("tokens/$token.txt")) {
-    $bookId = file_get_contents("tokens/$token.txt");
-    unlink("tokens/$token.txt"); // Token nach Verwendung löschen
-    $files = [
-        'book1' => 'path/to/book1.pdf',
-        'book2' => 'path/to/book2.pdf',
-        'book3' => 'path/to/book3.pdf'
-    ];
-    if (isset($files[$bookId])) {
-        header('Content-Type: application/pdf');
-        header('Content-Disposition: attachment; filename="' . basename($files[$bookId]) . '"');
-        readfile($files[$bookId]);
-        exit;
-    }
-}
-header("Location: error_page.php");
-exit;
-?>
+    // Temporären Token generieren
+    $token = bin2hex(random_bytes(16));
+    file_put_contents("tokens/$token.txt", $bookId); // Token speichern
+
+    // URL mit Token zurückgeben
+    return "
