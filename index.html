@@ -143,7 +143,7 @@
     changeBackground();
 </script>
 <div class="content">
-    <h1>Willkommen auf meiner Bücher  Webseite!</h1>
+    <h1>Willkommen auf meiner Webseite!</h1>
     <p>Hier finden Sie Informationen, Bilder und spannende Inhalte.</p>
 </div>
 <body>
@@ -184,7 +184,7 @@
             <div class="buch">
                 <img src="https://i.ibb.co/41C3fmF/Spirituelle-Symbole-die-Auserw-hlten-Gottes-und-Engel-und-engelszahlen-20241129-063943-0000.jpg" alt="Die Auserwählten Gottes">
                 <div>
-                    <h2>Buch 1: Die Auserwählten Gottes 1 Euro</h2>
+                    <h2>Buch 1: Die Auserwählten Gottes</h2>
                     <p>Dieses Buch erzählt die kraftvolle und inspirierende Reise eines unerschütterlichen Geistes.</p>
                     <p><a href="https://drive.google.com/uc?id=18cX8fyiwfucot9cXTL-74tVoKhS-B2Zd&export=download" target="_blank">Download Buch 1</a></p>
                 </div>
@@ -192,7 +192,7 @@
             <div class="buch">
                 <img src="https://i.ibb.co/X4NqHJr/cover.jpg" alt="Das verborgene Wissen des Universums">
                 <div>
-                    <h2>Buch 2: Das verborgene Wissen des Universums 2 Euro</h2>
+                    <h2>Buch 2: Das verborgene Wissen des Universums</h2>
                     <p>Eine Reise durch die Geheimnisse des Universums und alte Weisheiten.</p>
                     <p><a href="https://drive.google.com/uc?id=1EL1rWSntQdNL4cRgVeW7ToZHcEtdIiYZ&export=download" target="_blank">Download Buch 2</a></p>
                 </div>
@@ -200,7 +200,7 @@
             <div class="buch">
                 <img src="https://i.ibb.co/KbkKw96/DALL-E-2024-11-29-08-55-12-An-epic-vibrant-illustration-of-a-modern-day-Robin-Hood-character-standin.webp" alt="Robin Hood und der verlorene Schlüssel">
                 <div>
-                    <h2>Buch 3: Robin Hood und der verlorene Schlüssel1 Euro</h2>
+                    <h2>Buch 3: Robin Hood und der verlorene Schlüssel</h2>
                     <p>Ein spannendes Abenteuer voller Mut, Freundschaft und Geheimnisse.</p>
                     <p><a href="https://drive.google.com/uc?id=1TAznQvWu6T9tGWdWZWHGZTeGIphcwYJK&export=download" target="_blank">Download Buch 3</a></p>
                 </div>
@@ -321,7 +321,7 @@
       <section id="kurzbeschreibungen" style="margin-top: 40px;">
     <h2>Kurzbeschreibungen der Bücher</h2>
     <ul style="list-style-type: none; padding: 0;">
-        <li style="margin-bottom: 20px;"> 
+        <li style="margin-bottom: 20px;">
             <strong>Die Auserwählten Gottes:</strong>
             <p>Eine inspirierende Geschichte über Mut, Durchhaltevermögen und die Fähigkeit, Herausforderungen in Stärke zu verwandeln.</p>
         </li>
@@ -431,235 +431,3 @@ Genießen sie die neue freie Welt
     <h1>Willkommen auf meiner Webseite!</h1>
     <p>Hier finden Sie Informationen, Bilder und spannende Inhalte.</p>
 </div>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/VIDEO_ID" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-<iframe width="560" height="315" 
-        src="https://www.youtube.com/embed/VIDEO_ID" 
-        frameborder="0" 
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-        allowfullscreen>
-</iframe>
-    
-<?php
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // PayPal- oder Google Pay-API prüfen
-    $paymentStatus = validatePayment($_POST); // Funktion zur API-Validierung
-    if ($paymentStatus) {
-        // Temporärer Link erstellen
-        $downloadLink = generateTemporaryLink($_POST['book_id']); // Buch-ID
-        echo json_encode(['success' => true, 'download_link' => $downloadLink]);
-    } else {
-        echo json_encode(['success' => false, 'message' => 'Zahlung fehlgeschlagen.']);
-    }
-}
-
-function validatePayment($data) {
-    // Hier erfolgt die Validierung der Zahlung über die API
-    return true; // Beispiel: immer erfolgreich
-}
-
-function generateTemporaryLink($bookId) {
-    // Temporären Download-Link erstellen
-    $links = [
-        'book1' => 'https://secure-download-server.com/download/book1',
-        'book2' => 'https://secure-download-server.com/download/book2',
-        'book3' => 'https://secure-download-server.com/download/book3',
-    ];
-    return $links[$bookId] ?? null;
-}
-?>
-function handlePayment(bookId) {
-    const formData = new FormData();
-    formData.append('book_id', bookId);
-
-    fetch('process_payment.php', {
-        method: 'POST',
-        body: formData
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            window.location.href = data.download_link; // Redirect zum Download
-        } else {
-            alert(data.message);
-        }
-    })
-    .catch(error => console.error('Error:', error));
-}
-
-    <?php
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Buch-ID und Order-ID aus der Anfrage lesen
-    $bookId = $_POST['book_id'] ?? null;
-    $orderId = $_POST['order_id'] ?? null;
-
-    // Prüfen, ob die Eingaben gültig sind
-    if (!$bookId || !$orderId) {
-        header('Content-Type: application/json');
-        echo json_encode(['success' => false, 'message' => 'Ungültige Anfrage.']);
-        exit;
-    }
-
-    // Zahlung validieren
-    $paymentVerified = validatePayment($orderId);
-
-    if ($paymentVerified) {
-        // Temporären Download-Link generieren
-        $downloadLink = generateTemporaryLink($bookId);
-        header('Content-Type: application/json');
-        echo json_encode(['success' => true, 'download_link' => $downloadLink]);
-    } else {
-        // Fehlerantwort senden
-        header('Content-Type: application/json');
-        echo json_encode(['success' => false, 'message' => 'Zahlung fehlgeschlagen.']);
-    }
-    exit;
-}
-
-function validatePayment($orderId) {
-    // Simulierte Prüfung – hier sollten API-Aufrufe an PayPal/Google Pay erfolgen
-    // Rückgabe true, wenn Zahlung erfolgreich ist
-    return true; // Beispielhaft immer erfolgreich
-}
-
-function generateTemporaryLink($bookId) {
-    // Temporären Token generieren
-    $token = bin2hex(random_bytes(16));
-    file_put_contents("tokens/$token.txt", $bookId); // Token speichern
-
-    // URL mit Token zurückgeben
-    return "
-<?php
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $bookId = $_POST['book_id'] ?? null;
-    $orderId = $_POST['order_id'] ?? null;
-
-    if (!$bookId || !$orderId) {
-        header('Content-Type: application/json');
-        echo json_encode(['success' => false, 'message' => 'Ungültige Anfrage.']);
-        exit;
-    }
-
-    $paymentVerified = validatePayment($orderId);
-
-    if ($paymentVerified) {
-        $downloadLink = generateTemporaryLink($bookId);
-        header('Content-Type: application/json');
-        echo json_encode(['success' => true, 'download_link' => $downloadLink]);
-    } else {
-        header('Content-Type: application/json');
-        echo json_encode(['success' => false, 'message' => 'Zahlung fehlgeschlagen.']);
-    }
-    exit;
-}
-
-function validatePayment($orderId) {
-    return true; // Simulierte Validierung für Testzwecke
-}
-
-function generateTemporaryLink($bookId) {
-    $links = [
-        'book1' => 'https://secure-download-server.com/book1',
-        'book2' => 'https://secure-download-server.com/book2',
-        'book3' => 'https://secure-download-server.com/book3',
-    ];
-    return $links[$bookId] ?? null;
-}
-?>
-# Load and read the contents of the index.html file
-index_html_path_new = "/mnt/data/Meine-B-cher-Website-main-fixed-extracted/Meine-B-cher-Website-main/index.html"
-
-with open(index_html_path_new, 'r', encoding='utf-8') as file:
-    index_html_content_new = file.read()
-
-# Display the first 2000 characters for review
-index_html_content_new[:2000]
-
-# Check for payment-related sections in the index.html to confirm the integration status
-paypal_button_check = "paypal-button" in index_html_content_new
-google_pay_button_check = "google-pay-button" in index_html_content_new
-download_link_visibility_check = "display:none" not in index_html_content_new
-
-paypal_button_check, google_pay_button_check, download_link_visibility_check
-
-<?php
-
-// Funktion zur Validierung der Zahlung (API-Aufruf sollte hier integriert werden)
-function validatePayment($orderId) {
-    // API-Aufruf (z. B. an PayPal, Stripe) hier implementieren
-    // Rückgabe true, wenn die Zahlung erfolgreich war
-    return true; // Beispielhaft immer erfolgreich
-}
-
-// Funktion zur Generierung eines temporären Download-Links
-function generateTemporaryLink($bookId) {
-    $links = [
-        'book1' => 'https://secure-download-server.com/book1',
-        'book2' => 'https://secure-download-server.com/book2',
-        'book3' => 'https://secure-download-server.com/book3',
-    ];
-
-    return $links[$bookId] ?? null; // Rückgabe null, wenn Buch-ID ungültig
-}
-
-// Hauptlogik zur Verarbeitung der Zahlung
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $bookId = $_POST['book_id'] ?? null;
-    $orderId = $_POST['order_id'] ?? null;
-
-    // Überprüfung, ob die Buch-ID übergeben wurde
-    if (!$bookId) {
-        echo json_encode(['success' => false, 'message' => 'Ungültige Anfrage: Buch-ID fehlt.']);
-        exit;
-    }
-
-    // Zahlung validieren
-    $paymentVerified = validatePayment($orderId);
-
-    if ($paymentVerified) {
-        // Temporären Download-Link erstellen
-        $downloadLink = generateTemporaryLink($bookId);
-
-        if ($downloadLink) {
-            // Erfolgreiche Antwort mit Download-Link
-            header('Content-Type: application/json');
-            echo json_encode(['success' => true, 'download_link' => $downloadLink]);
-        } else {
-            // Fehler: Buch-ID nicht gefunden
-            header('Content-Type: application/json');
-            echo json_encode(['success' => false, 'message' => 'Buch-ID nicht gefunden.']);
-        }
-    } else {
-        // Fehler: Zahlung fehlgeschlagen
-        header('Content-Type: application/json');
-        echo json_encode(['success' => false, 'message' => 'Zahlung fehlgeschlagen.']);
-    }
-
-    exit;
-} else {
-    // Fehler: Ungültige Anfrage-Methode
-    header('Content-Type: application/json');
-    echo json_encode(['success' => false, 'message' => 'Ungültige Anfrage-Methode.']);
-    exit;
-}
-
-?>
-function handlePayment(bookId) {
-    const formData = new FormData();
-    formData.append('book_id', bookId);
-
-    fetch('process_payment.php', {
-        method: 'POST',
-        body: formData,
-    })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                // Weiterleitung zum Download-Link
-                window.location.href = data.download_link;
-            } else {
-                alert(data.message);
-            }
-        })
-        .catch(error => console.error('Error:', error));
-}
